@@ -1,5 +1,5 @@
 <?php
-//header("Content-Type: application/json; charset=utf-8");
+header("Content-Type: application/json; charset=utf-8");
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     echo json_encode(["message" => "Method not allowed"]);
@@ -63,4 +63,5 @@ echo json_encode([
     "message_clean" => $clean
 ]);
 exit;
+?>
 

@@ -184,50 +184,23 @@ agile environments
 
         <aside>
           <div class="card">
-            <h3 style="margin-top:0">Secure Contact and Automated Scheduling with Ashikur?</h3>
+            <h3 style="margin-top:0">Want a Schedule with Me for a chitchat?</h3>
             <p class="small">
               My AI assistant is deployed for immediate support and information retrieval. 
-              You may use the assistant to efficiently schedule a meeting, which will instantly 
-              notify me for a prompt follow-up via a short video call or email response.
+              Try him please :D 
               </p>
 
                <div id="chatBox"></div>
    
-	<input id="userInputEmail" size="50" placeholder="Please provide your email please" />
-		
-    <div id="inputBox">
- 	
-        <input id="userInput" placeholder="Type your question..." />
-        <button id="sendBtn">Send</button>
-    </div>
+              <input id="userInputEmail" placeholder="Please provide your email please" />
+                
+                <div id="inputBox">
+              
+                    <input id="userInput" placeholder="Type your question..." />
+                    <button id="sendBtn">Send</button>
+          </div>
 
-            <!-- <form id="contactForm">
-              <div>
-                <label for="name">Full name</label>
-                <input id="name" name="name" type="text" required />
-              </div>
-              <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" required />
-              </div>
-              <div>
-                <label for="role">Role / Position</label>
-                <input id="role" name="role" type="text" placeholder="e.g. Software Engineer" />
-              </div>
-              <div>
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-              </div>
-
-              <div>
-                <label for="webhook">Webhook URL (optional)</label>
-                <input id="webhook" name="webhook" type="url" placeholder="https://example.com/webhook" />
-                <div class="small">If a webhook URL is supplied, the form will POST JSON to that endpoint. Otherwise the message will be emailed using the default mailto fallback.</div>
-              </div>
-
-              <button type="submit" class="btn">Send Message</button>
-              <div id="status" class="small" style="margin-top:8px;color:var(--muted)"></div>
-            </form> -->
+          
 
             <hr style="margin:12px 0;border:none;border-top:1px solid #eef2f6" />
             <h4 style="margin:0 0 8px 0">Quick Contact</h4>

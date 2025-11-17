@@ -19,13 +19,15 @@
     }
 
     .msg-user, .msg-bot {
-        padding: 12px 16px;
-        margin: 12px 0;
-        border-radius: 10px;
-        max-width: 85%;
-        white-space: pre-wrap;
-        line-height: 1.4em;
-    }
+  padding: 5px 5px;
+  margin: 6px 0;
+    margin-right: 0px;
+  border-radius: 10px;
+  max-width: 85%;
+  white-space: pre-wrap;
+
+  font-size: 13px;
+}
 
     .msg-user {
         background:#d9ecff;
@@ -322,6 +324,7 @@ function scrollBottom() {
       alert(p.querySelector('strong').innerText + '\n\n' + p.querySelector('.small').innerText);
     }))
 
+/*
     // Form: POST JSON to webhook OR fallback to mailto
     document.getElementById('contactForm').addEventListener('submit', async (e)=>{
       e.preventDefault();
@@ -360,6 +363,7 @@ function scrollBottom() {
       }
 
     });
+    */
   </script>
 </body>
 </html>

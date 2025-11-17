@@ -186,15 +186,14 @@ agile environments
           <div class="card">
             <h3 style="margin-top:0">Secure Contact and Automated Scheduling with Ashikur?</h3>
             <p class="small">
-              Please use this secure form for direct communication. 
-              Our AI assistant is deployed for immediate support and information retrieval. 
+              My AI assistant is deployed for immediate support and information retrieval. 
               You may use the assistant to efficiently schedule a meeting, which will instantly 
               notify me for a prompt follow-up via a short video call or email response.
               </p>
 
                <div id="chatBox"></div>
    
-	<input id="userInputEmail" size="100" placeholder="Please provide your email (example@example.com) address to coordinate collaboration..." />
+	<input id="userInputEmail" size="50" placeholder="Please provide your email please" />
 		
     <div id="inputBox">
  	

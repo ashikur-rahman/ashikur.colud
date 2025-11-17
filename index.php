@@ -6,6 +6,71 @@
   <title>Md Ashikur Rahman — Portfolio</title>
   <meta name="description" content="Md Ashikur Rahman — Software Developer & Fintech Specialist. Backend, APIs, Laravel, PHP, Java, Spring Boot, AI-assisted development, cloud, e-commerce automation." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <style>
+    #chatBox {
+        background:white;
+        border-radius: 12px;
+        padding: 20px;
+        
+        height: 200px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        overflow-y: auto;
+    }
+
+    .msg-user, .msg-bot {
+        padding: 12px 16px;
+        margin: 12px 0;
+        border-radius: 10px;
+        max-width: 85%;
+        white-space: pre-wrap;
+        line-height: 1.4em;
+    }
+
+    .msg-user {
+        background:#d9ecff;
+        margin-left:auto;
+    }
+
+    .msg-bot {
+        background:#f2f2f2;
+        margin-right:auto;
+    }
+
+    #inputBox {
+        margin-top: 20px;
+        display:flex;
+        gap:10px;
+    }
+
+    #userInput {
+        flex:1;
+        padding:10px;
+        border-radius:8px;
+        border:1px solid #ccc;
+    }
+ #userInputEmail {
+	margin-top: 20px;
+        display:flex;
+        gap:10px;
+        flex:1;
+        padding:10px;
+        border-radius:8px;
+        border:1px solid #ccc;
+size : 50px;
+    	}
+
+
+    button {
+        padding:10px 16px;
+        background:#0066ff;
+        border:none;
+        border-radius:8px;
+        color:white;
+        cursor:pointer;
+    }
+</style>
+  
   <style>
     :root{--bg:#f8fafc;--card:#ffffff;--muted:#64748b;--accent:#2563eb;--accent-2:#0ea5e9}
     *{box-sizing:border-box}
@@ -119,10 +184,25 @@ agile environments
 
         <aside>
           <div class="card">
-            <h3 style="margin-top:0">Contact Employer</h3>
-            <p class="small">Use this secure form to send a message directly to my inbox or a webhook endpoint (for ATS / recruiter integrations). You can configure the webhook URL in the JavaScript at the bottom of the file.</p>
+            <h3 style="margin-top:0">Secure Contact and Automated Scheduling with Ashikur?</h3>
+            <p class="small">
+              Please use this secure form for direct communication. 
+              Our AI assistant is deployed for immediate support and information retrieval. 
+              You may use the assistant to efficiently schedule a meeting, which will instantly 
+              notify me for a prompt follow-up via a short video call or email response.
+              </p>
 
-            <form id="contactForm">
+               <div id="chatBox"></div>
+   
+	<input id="userInputEmail" size="100" placeholder="Please provide your email (example@example.com) address to coordinate collaboration..." />
+		
+    <div id="inputBox">
+ 	
+        <input id="userInput" placeholder="Type your question..." />
+        <button id="sendBtn">Send</button>
+    </div>
+
+            <!-- <form id="contactForm">
               <div>
                 <label for="name">Full name</label>
                 <input id="name" name="name" type="text" required />
@@ -148,7 +228,7 @@ agile environments
 
               <button type="submit" class="btn">Send Message</button>
               <div id="status" class="small" style="margin-top:8px;color:var(--muted)"></div>
-            </form>
+            </form> -->
 
             <hr style="margin:12px 0;border:none;border-top:1px solid #eef2f6" />
             <h4 style="margin:0 0 8px 0">Quick Contact</h4>
@@ -173,9 +253,81 @@ agile environments
   </div>
 
   <script>
+// --------------------------------------------
+// 1) GENERATE SESSION ID ONCE PER PAGE LOAD
+// --------------------------------------------
+let sessionId = localStorage.getItem("ashik_session_id");
+
+if (!sessionId) {
+    sessionId = "sess_" + Math.random().toString(36).substr(2, 9) + "_" + Date.now();
+    localStorage.setItem("ashik_session_id", sessionId);
+    console.log("New session created:", sessionId);
+} else {
+    console.log("Existing session loaded:", sessionId);
+}
+
+// --------------------------------------------
+// Chat Interface Logic
+// --------------------------------------------
+$("#sendBtn").click(function() {
+    sendMessage();
+});
+
+$("#userInput").on("keypress", function(e) {
+    if (e.which === 13) sendMessage();
+});
+
+function sendMessage() {
+    let text = $("#userInput").val().trim();
+
+    // get email, fallback to default
+    const email = $('#userInputEmail').val().trim();
+    const email_final = email ? email : 'shuvo133@gmail.com';
+
+
+    if (!text) return;
+
+    appendUser(text);
+    $("#userInput").val("");
+
+    $.ajax({
+        url: "submit.php",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            user_email: email_final,
+            user_question: text,
+            session_id: sessionId
+        }),
+        success: function(res) {
+            appendBot(res.message_clean);
+        },
+        error: function() {
+            appendBot("❌ Error contacting AI Agent.");
+        }
+    });
+}
+
+function appendUser(msg) {
+    $("#chatBox").append(`<div class="msg-user">${msg}</div>`);
+    scrollBottom();
+}
+
+function appendBot(msg) {
+    $("#chatBox").append(`<div class="msg-bot">${msg}</div>`);
+    scrollBottom();
+}
+
+function scrollBottom() {
+    let div = document.getElementById("chatBox");
+    div.scrollTop = div.scrollHeight;
+}
+</script>
+
+  <script>
     // Config
-    const DEFAULT_PDF = 'MdAshikurRahmanResume-2_new.pdf'; // point to uploaded PDF
-    const DEFAULT_DOC = 'MD_Ashikur_Rahman_Solution_Architect_CV.docx'; // include in package
+    const DEFAULT_PDF = 'resume_md_ashikur_rahman full.pdf'; // point to uploaded PDF
+    const DEFAULT_DOC = 'resume_md_ashikur_rahman full.pdf'; // include in package
 
     // download handlers
     document.getElementById('downloadPdf').addEventListener('click', ()=>{

@@ -186,10 +186,11 @@ agile environments
 
         <aside>
           <div class="card">
-            <h3 style="margin-top:0">Want a Schedule with Me for a chitchat?</h3>
+            <h3 style="margin-top:0">Chat With My Autonomous AI Assistant</h3>
             <p class="small">
-              My AI assistant is deployed for immediate support and information retrieval. 
-              Try him please :D 
+               This assistant is fully powered by my custom-built AI automation system — combining
+               OpenAI Agents, RAG knowledge retrieval (Pinecone vector database), 
+               custom API endpoints (gmail, calander, slack, telegram), and n8n workflow orchestration.  Try him please :D 
               </p>
 
                <div id="chatBox"></div>

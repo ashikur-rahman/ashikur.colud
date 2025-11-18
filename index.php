@@ -135,8 +135,8 @@
 
           <!-- controls -->
           <div class="mt-3 flex gap-2 items-center">
-            <input id="userInput" placeholder="Type your question..." class="flex-1 p-2 rounded-lg border border-slate-200 text-sm" />
             <button id="sendBtn" class="px-4 py-2 rounded-lg bg-sky-600 text-white font-semibold hover:bg-sky-700">Send</button>
+            <input id="userInput" placeholder="Type your question..." class="flex-1 p-2 rounded-lg border border-slate-200 text-sm" />
           </div>
 
           <!-- quick helper -->

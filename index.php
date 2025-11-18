@@ -4,228 +4,178 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Md Ashikur Rahman — Portfolio</title>
-  <meta name="description" content="Md Ashikur Rahman — Software Developer & Fintech Specialist. Backend, APIs, Laravel, PHP, Java, Spring Boot, AI-assisted development, cloud, e-commerce automation." />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Your fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
   <style>
-    #chatBox {
-        background:white;
-        border-radius: 12px;
-        padding: 20px;
-        
-        height: 200px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        overflow-y: auto;
-    }
-
-    .msg-user, .msg-bot {
-  padding: 5px 5px;
-  margin: 6px 0;
-    margin-right: 0px;
-  border-radius: 10px;
-  max-width: 85%;
-  white-space: pre-wrap;
-
-  font-size: 13px;
-}
-
-    .msg-user {
-        background:#d9ecff;
-        margin-left:auto;
-    }
-
-    .msg-bot {
-        background:#f2f2f2;
-        margin-right:auto;
-    }
-
-    #inputBox {
-        margin-top: 20px;
-        display:flex;
-        gap:10px;
-    }
-
-    #userInput {
-        flex:1;
-        padding:10px;
-        border-radius:8px;
-        border:1px solid #ccc;
-    }
- #userInputEmail {
-	margin-top: 20px;
-        display:flex;
-        gap:10px;
-        flex:1;
-        padding:10px;
-        border-radius:8px;
-        border:1px solid #ccc;
-size : 50px;
-    	}
-
-
-    button {
-        padding:10px 16px;
-        background:#0066ff;
-        border:none;
-        border-radius:8px;
-        color:white;
-        cursor:pointer;
-    }
-</style>
-  
-  <style>
-    :root{--bg:#f8fafc;--card:#ffffff;--muted:#64748b;--accent:#2563eb;--accent-2:#0ea5e9}
-    *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:#0f172a}
-    a{color:var(--accent)}
-    .wrap{max-width:1100px;margin:28px auto;padding:20px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .photo{width:84px;height:84px;border-radius:999px;background:#e2e8f0;display:inline-grid;place-items:center;color:#0f172a;font-weight:700}
-    h1{margin:0;font-size:22px}
-    .sub{color:var(--muted);font-size:13px}
-    .actions{display:flex;gap:10px}
-    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
-    .btn.ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--accent)}
-    main{margin-top:20px}
-    .grid-two{display:grid;grid-template-columns:1fr 360px;gap:20px}
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
-    h2{margin-top:0;color:#0f172a}
-    .skills{display:flex;flex-wrap:wrap;gap:8px}
-    .skill{background:#eef2ff;padding:8px 10px;border-radius:8px;color:#0f172a;font-weight:600;font-size:13px}
-    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-    .proj{padding:12px;background:#fff;border-radius:8px;border:1px solid #eef2f6}
-    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
-    form{display:flex;flex-direction:column;gap:10px}
-    input,textarea,select{padding:10px;border-radius:8px;border:1px solid #e6eef6;font-size:14px}
-    label{font-weight:600;font-size:13px}
-    .small{font-size:13px;color:var(--muted)}
-    @media(max-width:920px){.grid-two{grid-template-columns:1fr}.photo{width:64px;height:64px}}
+    body { font-family: 'Inter', sans-serif; }
   </style>
+
+  <!-- Custom Tailwind config (soft colors + accent theme) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ashBlue: "#d9ecff",
+            ashSoft: "#f2f2f2",
+            ashPrimary: "#2563eb",
+            ashSecondary: "#0ea5e9",
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-       <div class="photo" id="photoPlaceholder">
-            <img src="photo-placeholder.jpg" alt="Md Ashikur Rahman" 
-                style="width:84px;height:84px;border-radius:50%;object-fit:cover;" />
-            </div>
-        <div>
-          <h1>MD ASHIKUR RAHMAN</h1>
-          <div class="sub">Software Developer | Fintech & AI Automation Specialist</div>
-          <div class="small">London, E16 2JE • +44 7353 215427 • <a href="mailto:im.md.ashikur.rahman@gmail.com">im.md.ashikur.rahman@gmail.com</a> • <a href="http://ashikur.cloud:8080/"></a>http://ashikur.cloud:8080/</a></div>
+
+
+<body class="bg-slate-50 text-slate-800">
+
+<div class="wrap max-w-6xl mx-auto p-6">
+
+  <!-- HEADER -->
+  <header class="flex items-center justify-between mb-8">
+    <div class="flex items-center gap-5">
+
+      <!-- PHOTO -->
+      <div id="photoPlaceholder"
+           class="w-20 h-20 rounded-full overflow-hidden shadow-lg ring-2 ring-blue-200">
+        <img src="photo-placeholder.jpg"
+             alt="Md Ashikur Rahman"
+             class="w-full h-full object-cover" />
+      </div>
+
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight">MD ASHIKUR RAHMAN</h1>
+        <p class="text-sm text-gray-500">Software Developer | Fintech & AI Automation Specialist</p>
+
+        <p class="text-xs text-slate-500 mt-1">
+          London, E16 2JE • +44 7353 215427 •
+          <a href="mailto:im.md.ashikur.rahman@gmail.com"
+             class="text-blue-600 hover:underline">
+             im.md.ashikur.rahman@gmail.com
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <a id="downloadPdf"
+         class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 cursor-pointer">
+         Download CV (PDF)
+      </a>
+
+      <a id="downloadDoc"
+         class="px-4 py-2 bg-white text-blue-600 rounded-lg shadow border hover:bg-blue-50 cursor-pointer">
+         Download CV (DOCX)
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="grid grid-cols-1 md:grid-cols-[1fr_350px] gap-6">
+
+    <!-- LEFT SIDE -->
+    <section class="space-y-6">
+
+      <!-- SUMMARY -->
+      <div class="bg-white rounded-xl shadow p-6">
+        <h2 class="text-lg font-semibold">Summary</h2>
+
+        <p class="text-sm leading-relaxed text-slate-600 mt-2">
+          Experienced Backend Developer with 12+ years in banking, fintech, and SaaS industries...
+        </p>
+
+        <h3 class="font-semibold mt-4 mb-2 text-slate-800">Core Skills</h3>
+
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-lg text-xs font-semibold">PHP</span>
+          <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-lg text-xs font-semibold">Spring Boot</span>
+          <span class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-lg text-xs font-semibold">Python</span>
+          <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-lg text-xs font-semibold">AI + N8N</span>
+          <span class="bg-rose-50 text-rose-700 px-3 py-1 rounded-lg text-xs font-semibold">Docker</span>
         </div>
       </div>
-      <div class="actions">
-        <a class="btn" id="downloadPdf">Download CV (PDF)</a>
-        <a class="btn" id="downloadDoc">Download CV (DOCX)</a>
-      </div>
-    </header>
 
-    <main>
-      <div class="grid-two">
-        <section>
-          <div class="card">
-            <h2>Summary</h2>
-            <p>Experienced
-Backend Developer
-with 12+ years in
-banking, fintech, and SaaS
-industries, specialising in
-scalable API and microservice architecture
-. Skilled in
-PHP, Java Spring Boot, Python, and AWS
-, with a strong focus on
-secure, high-performance systems
-. Adept at using
-AI-assisted tools
-to enhance productivity, streamline development, and deliver robust cloud-based solutions in
-agile environments
-.</p>
-            <div style="margin-top:12px">
-              <h3 style="margin:8px 0">Core Skills</h3>
-              <div class="skills">
-                <span class="skill">PHP (CodeIgniter)</span>
-                <span class="skill">Java Spring Boot</span>
-                <span class="skill">Python</span>
-                <span class="skill">MySQL</span>
-                <span class="skill">AWS</span>
-                <span class="skill">APIs (N8N)</span>
-                <span class="skill">Docker</span>
-                <span class="skill">Power BI</span>
-                <span class="skill">AI Tools </span>
-              </div>
-            </div>
+      <!-- PROJECTS -->
+      <div class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-lg font-semibold mb-3">Selected Projects</h3>
 
-            <div style="margin-top:14px">
-              <h3 style="margin:8px 0">Experience Highlights</h3>
-              <ul>
-                <li><strong>Agrani RMS</strong> — Led development of a remittance platform processing $10M+ daily.</li>
-                <li><strong>Postgraduate-Funding.com</strong> — 9 years building & maintaining UK-facing funding CMS and payments.</li>
-                <li><strong>i-probono.com</strong> — Custom CMS connecting NGOs with legal volunteers.</li>
-              </ul>
-            </div>
-
+        <div id="projects" class="grid sm:grid-cols-2 gap-3">
+          <div class="p-4 bg-slate-50 rounded-lg border hover:shadow-md cursor-pointer proj">
+            <strong>Agrani RMS</strong>
+            <p class="text-xs text-slate-500">Enterprise remittance engine.</p>
           </div>
 
-          <div class="card" style="margin-top:12px">
-            <h3 style="margin:0 0 8px 0">Selected Projects</h3>
-            <div class="projects" id="projects">
-              <article class="proj" data-key="Agrani RMS"><strong>Agrani RMS</strong><p class="small">Java Spring Boot, PHP, MySQL — Enterprise remittance engine.</p></article>
-              <article class="proj" data-key="Postgraduate-Funding"><strong>Postgraduate-Funding.com</strong><p class="small">Custom CMS (CodeIgniter), payment & licensing system for UK users.</p></article>
-              <article class="proj" data-key="i-probono"><strong>i-probono.com</strong><p class="small">Bespoke PHP CMS for legal volunteering.</p></article>
-            </div>
+          <div class="p-4 bg-slate-50 rounded-lg border hover:shadow-md cursor-pointer proj">
+            <strong>Postgraduate-Funding.com</strong>
+            <p class="text-xs text-slate-500">UK academic funding CMS.</p>
           </div>
-
-          <div class="card" style="margin-top:12px">
-            <h3 style="margin:0 0 8px 0">Why hire me ?</h3>
-            <p class="small">I combine deep backend and fintech experience with practical e-commerce automation and cloud expertise. I focus on secure, maintainable systems and deliver results for UK clients and stakeholders.</p>
-          </div>
-        </section>
-
-        <aside>
-          <div class="card">
-            <h3 style="margin-top:0">Chat With My Autonomous AI Assistant</h3>
-            <p class="small">
-               This assistant is fully powered by my custom-built AI automation system — combining
-               OpenAI Agents, RAG knowledge retrieval (Pinecone vector database), 
-               custom API endpoints (gmail, calander, slack, telegram), and n8n workflow orchestration.  Try him please :D 
-              </p>
-
-               <div id="chatBox"></div>
-   
-              <input id="userInputEmail" placeholder="Please provide your email please" />
-                
-                <div id="inputBox">
-              
-                    <input id="userInput" placeholder="Type your question..." />
-                    <button id="sendBtn">Send</button>
-          </div>
-
-          
-
-            <hr style="margin:12px 0;border:none;border-top:1px solid #eef2f6" />
-            <h4 style="margin:0 0 8px 0">Quick Contact</h4>
-            <div class="small">Email: <a href="mailto:im.md.ashikur.rahman@gmail.com">im.md.ashikur.rahman@gmail.com</a></div>
-            <div class="small">Phone: <a href="tel:+447353215427">+44 7353 215427</a></div>
-            <!-- <div style="margin-top:8px"><a href="#" id="copyEmail" class="btn ghost">Copy Email</a></div> -->
-          </div>
-
-          <div class="card" style="margin-top:12px">
-            <h4 style="margin:0 0 8px 0">Education & Certs</h4>
-            <div class="small">BSc Computer Science & Telecoms (NSTU) • Zend Certified Engineer (PHP)</div>
-          </div>
-
-        </aside>
+        </div>
       </div>
 
-    </main>
+    </section>
 
-    <footer>
-      © 2025 Md Ashikur Rahman • London • <a href="https://www.linkedin.com/in/ashikurrahmanshuvo/" target="_blank">LinkedIn</a>
-    </footer>
-  </div>
+    <!-- RIGHT SIDE / AI CHAT -->
+    <aside class="space-y-6">
+
+      <div class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-lg font-semibold">Chat With My Autonomous AI Agent</h3>
+
+        <p class="text-xs text-gray-500 mt-1">
+          Powered by OpenAI Agents, RAG (Pinecone), Google Calendar API, Gmail API,
+          and automated via N8N — the same architecture I build for real clients.
+        </p>
+
+        <!-- CHATBOX -->
+        <div id="chatBox"
+             class="mt-4 h-56 p-4 bg-slate-100 rounded-xl overflow-y-auto shadow-inner"></div>
+
+        <!-- EMAIL -->
+        <input id="userInputEmail"
+               placeholder="Please provide your email"
+               class="mt-3 w-full p-3 rounded-lg border text-sm" />
+
+        <!-- INPUT BAR -->
+        <div id="inputBox" class="flex gap-2 mt-3">
+          <input id="userInput"
+                 placeholder="Ask anything..."
+                 class="flex-1 p-3 rounded-lg border text-sm" />
+          <button id="sendBtn"
+                  class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
+            Send
+          </button>
+        </div>
+
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6">
+        <h4 class="font-semibold mb-2">Education & Certifications</h4>
+        <p class="text-xs text-slate-500">
+          BSc Computer Science • Zend Certified Engineer (PHP)
+        </p>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <footer class="text-center text-xs text-gray-500 mt-10">
+    © 2025 Md Ashikur Rahman — London •
+    <a href="https://www.linkedin.com/in/ashikurrahmanshuvo/"
+       target="_blank"
+       class="text-blue-600 hover:underline">
+       LinkedIn
+    </a>
+  </footer>
+
+</div>
 
   <script>
 // --------------------------------------------

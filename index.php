@@ -209,7 +209,7 @@ agile environments
             <h4 style="margin:0 0 8px 0">Quick Contact</h4>
             <div class="small">Email: <a href="mailto:im.md.ashikur.rahman@gmail.com">im.md.ashikur.rahman@gmail.com</a></div>
             <div class="small">Phone: <a href="tel:+447353215427">+44 7353 215427</a></div>
-            <div style="margin-top:8px"><a href="#" id="copyEmail" class="btn ghost">Copy Email</a></div>
+            <!-- <div style="margin-top:8px"><a href="#" id="copyEmail" class="btn ghost">Copy Email</a></div> -->
           </div>
 
           <div class="card" style="margin-top:12px">

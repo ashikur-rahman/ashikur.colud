@@ -3,318 +3,362 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Md Ashikur Rahman — Portfolio</title>
+  <title>Md Ashikur Rahman — Portfolio & AI Assistant</title>
+  <meta name="description" content="Md Ashikur Rahman — Software Developer & Fintech Specialist. Backend, APIs, Laravel, PHP, Java, Spring Boot, AI-assisted development, cloud, e-commerce automation." />
 
-  <!-- Tailwind CDN -->
+  <!-- Inter font + Tailwind CDN (JIT) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Your fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
   <style>
-    body { font-family: 'Inter', sans-serif; }
-  </style>
-
-  <!-- Custom Tailwind config (soft colors + accent theme) -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ashBlue: "#d9ecff",
-            ashSoft: "#f2f2f2",
-            ashPrimary: "#2563eb",
-            ashSecondary: "#0ea5e9",
-          }
-        }
-      }
+    /* small theme tweak using Tailwind CSS variables */
+    :root { --accent:#0ea5e9; --accent-2:#2563eb; }
+    html,body { font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    /* typing dots */
+    .typing-dots > span {
+      display:inline-block;
+      width:6px;height:6px;margin:0 2px;border-radius:999px;background:#9aa6b2;opacity:0;
+      animation: blink 1s infinite;
     }
-  </script>
+    .typing-dots > span:nth-child(1){ animation-delay: 0s; }
+    .typing-dots > span:nth-child(2){ animation-delay: .15s; }
+    .typing-dots > span:nth-child(3){ animation-delay: .3s; }
+    @keyframes blink {
+      0%{opacity:0.15; transform: translateY(0);}
+      50%{opacity:1; transform: translateY(-4px);}
+      100%{opacity:0.15; transform: translateY(0);}
+    }
+    /* small scrollbar for chat */
+    #chatBox::-webkit-scrollbar { width:8px; }
+    #chatBox::-webkit-scrollbar-thumb { background: rgba(15,23,42,0.12); border-radius:999px; }
+  </style>
 </head>
+<body class="bg-slate-50 text-slate-900">
 
-
-<body class="bg-slate-50 text-slate-800">
-
-<div class="wrap max-w-6xl mx-auto p-6">
-
-  <!-- HEADER -->
-  <header class="flex items-center justify-between mb-8">
-    <div class="flex items-center gap-5">
-
-      <!-- PHOTO -->
-      <div id="photoPlaceholder"
-           class="w-20 h-20 rounded-full overflow-hidden shadow-lg ring-2 ring-blue-200">
-        <img src="photo-placeholder.jpg"
-             alt="Md Ashikur Rahman"
-             class="w-full h-full object-cover" />
-      </div>
-
-      <div>
-        <h1 class="text-2xl font-bold tracking-tight">MD ASHIKUR RAHMAN</h1>
-        <p class="text-sm text-gray-500">Software Developer | Fintech & AI Automation Specialist</p>
-
-        <p class="text-xs text-slate-500 mt-1">
-          London, E16 2JE • +44 7353 215427 •
-          <a href="mailto:im.md.ashikur.rahman@gmail.com"
-             class="text-blue-600 hover:underline">
-             im.md.ashikur.rahman@gmail.com
-          </a>
-        </p>
-      </div>
-    </div>
-
-    <div class="flex gap-3">
-      <a id="downloadPdf"
-         class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 cursor-pointer">
-         Download CV (PDF)
-      </a>
-
-      <a id="downloadDoc"
-         class="px-4 py-2 bg-white text-blue-600 rounded-lg shadow border hover:bg-blue-50 cursor-pointer">
-         Download CV (DOCX)
-      </a>
-    </div>
-  </header>
-
-  <!-- MAIN -->
-  <main class="grid grid-cols-1 md:grid-cols-[1fr_350px] gap-6">
-
-    <!-- LEFT SIDE -->
-    <section class="space-y-6">
-
-      <!-- SUMMARY -->
-      <div class="bg-white rounded-xl shadow p-6">
-        <h2 class="text-lg font-semibold">Summary</h2>
-
-        <p class="text-sm leading-relaxed text-slate-600 mt-2">
-          Experienced Backend Developer with 12+ years in banking, fintech, and SaaS industries...
-        </p>
-
-        <h3 class="font-semibold mt-4 mb-2 text-slate-800">Core Skills</h3>
-
-        <div class="flex flex-wrap gap-2">
-          <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-lg text-xs font-semibold">PHP</span>
-          <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-lg text-xs font-semibold">Spring Boot</span>
-          <span class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-lg text-xs font-semibold">Python</span>
-          <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-lg text-xs font-semibold">AI + N8N</span>
-          <span class="bg-rose-50 text-rose-700 px-3 py-1 rounded-lg text-xs font-semibold">Docker</span>
+  <div class="max-w-6xl mx-auto p-6">
+    <!-- Header -->
+    <header class="flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <div id="photoPlaceholder" class="w-20 h-20 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden shadow-sm">
+          <img src="photo-placeholder.jpg" alt="Md Ashikur Rahman" class="w-full h-full object-cover"/>
+        </div>
+        <div>
+          <h1 class="text-2xl font-semibold">Md Ashikur Rahman</h1>
+          <p class="text-sm text-slate-500">Software Developer · Fintech & AI Automation Specialist — London</p>
+          <p class="text-xs text-slate-400 mt-1">im.md.ashikur.rahman@gmail.com • <a class="text-sky-600" href="http://ashikur.cloud:8080">ashikur.cloud</a></p>
         </div>
       </div>
 
-      <!-- PROJECTS -->
-      <div class="bg-white rounded-xl shadow p-6">
-        <h3 class="text-lg font-semibold mb-3">Selected Projects</h3>
+      <div class="flex items-center gap-2">
+        <button id="downloadPdf" class="px-4 py-2 rounded-lg bg-sky-600 text-white text-sm font-semibold shadow hover:bg-sky-700">Download CV (PDF)</button>
+        <button id="downloadDoc" class="px-4 py-2 rounded-lg bg-white border border-slate-200 text-sm font-semibold hover:bg-slate-50">Download CV (DOCX)</button>
+      </div>
+    </header>
 
-        <div id="projects" class="grid sm:grid-cols-2 gap-3">
-          <div class="p-4 bg-slate-50 rounded-lg border hover:shadow-md cursor-pointer proj">
-            <strong>Agrani RMS</strong>
-            <p class="text-xs text-slate-500">Enterprise remittance engine.</p>
+    <main class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Left: Summary + Projects -->
+      <section class="lg:col-span-2 space-y-4">
+        <article class="bg-white rounded-2xl p-6 shadow">
+          <h2 class="text-lg font-semibold">Summary</h2>
+          <p class="text-sm text-slate-700 mt-3 leading-relaxed">
+            Experienced backend developer with 12+ years in banking, fintech and SaaS. I design and build scalable APIs,
+            microservices, and automation platforms — using PHP, Java Spring Boot, Python and cloud-native tools.
+            I integrate AI agents and workflow orchestration (n8n) to automate business processes and customer interactions.
+          </p>
+
+          <div class="mt-4">
+            <h3 class="text-sm font-medium text-slate-700">Core Skills</h3>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">PHP (CodeIgniter)</span>
+              <span class="text-xs font-semibold px-3 py-1 bg-amber-50 text-amber-700 rounded-full">Java Spring Boot</span>
+              <span class="text-xs font-semibold px-3 py-1 bg-violet-50 text-violet-700 rounded-full">Python</span>
+              <span class="text-xs font-semibold px-3 py-1 bg-rose-50 text-rose-700 rounded-full">MySQL</span>
+              <span class="text-xs font-semibold px-3 py-1 bg-lime-50 text-lime-700 rounded-full">AWS</span>
+              <span class="text-xs font-semibold px-3 py-1 bg-slate-50 text-slate-700 rounded-full">APIs (n8n)</span>
+              <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">Docker</span>
+              <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full">Power BI</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl p-6 shadow">
+          <h3 class="text-lg font-semibold">Selected Projects</h3>
+          <div class="mt-4 grid sm:grid-cols-2 gap-4">
+            <div class="p-4 border rounded-lg bg-slate-50">
+              <strong class="block">Agrani RMS</strong>
+              <p class="text-xs text-slate-600 mt-2">Enterprise remittance engine — Java, microservices, analytics.</p>
+            </div>
+            <div class="p-4 border rounded-lg bg-slate-50">
+              <strong class="block">Postgraduate-Funding.com</strong>
+              <p class="text-xs text-slate-600 mt-2">Custom CMS & payments for UK students — PHP, CI, payments.</p>
+            </div>
+            <div class="p-4 border rounded-lg bg-slate-50">
+              <strong class="block">i-probono.com</strong>
+              <p class="text-xs text-slate-600 mt-2">Bespoke PHP CMS connecting NGOs with legal volunteers.</p>
+            </div>
+            <div class="p-4 border rounded-lg bg-slate-50">
+              <strong class="block">AI Agent & RAG Integration</strong>
+              <p class="text-xs text-slate-600 mt-2">RAG knowledge + OpenAI + n8n orchestration for booking & automation.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl p-6 shadow">
+          <h3 class="text-lg font-semibold">Why hire me?</h3>
+          <p class="text-sm text-slate-700 mt-3">
+            I combine deep backend/fintech experience with practical automation using AI agents and workflow orchestration.
+            I deliver secure, scalable solutions and can integrate conversational assistants into your product or operations.
+          </p>
+        </article>
+      </section>
+
+      <!-- Right: AI Assistant Card -->
+      <aside class="space-y-4">
+        <div class="bg-white rounded-2xl p-4 shadow flex flex-col">
+          <div class="flex items-start gap-3">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center">
+              <svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16h6"></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h4 class="text-sm font-semibold">Chat With My Autonomous AI Assistant</h4>
+              <p class="text-xs text-slate-500 mt-1">Live demo — integrated with OpenAI, RAG knowledge retrieval & n8n automation (calendar, email, Slack, Telegram).</p>
+            </div>
           </div>
 
-          <div class="p-4 bg-slate-50 rounded-lg border hover:shadow-md cursor-pointer proj">
-            <strong>Postgraduate-Funding.com</strong>
-            <p class="text-xs text-slate-500">UK academic funding CMS.</p>
+          <!-- chat container -->
+          <div id="chatBox" class="mt-4 h-64 overflow-auto p-3 rounded-lg bg-gradient-to-b from-white to-slate-50 border border-slate-100"></div>
+
+          <!-- email input -->
+          <input id="userInputEmail" type="email" placeholder="Please provide your email (optional)" class="mt-3 p-2 rounded-md border border-slate-200 text-sm" />
+
+          <!-- controls -->
+          <div class="mt-3 flex gap-2 items-center">
+            <input id="userInput" placeholder="Type your question..." class="flex-1 p-2 rounded-lg border border-slate-200 text-sm" />
+            <button id="sendBtn" class="px-4 py-2 rounded-lg bg-sky-600 text-white font-semibold hover:bg-sky-700">Send</button>
+          </div>
+
+          <!-- quick helper -->
+          <div class="mt-3 text-xs text-slate-400">
+            Tip: Ask about my experience, request a meeting, or say "suggest slots" to get availability.
           </div>
         </div>
-      </div>
 
-    </section>
-
-    <!-- RIGHT SIDE / AI CHAT -->
-    <aside class="space-y-6">
-
-      <div class="bg-white rounded-xl shadow p-6">
-        <h3 class="text-lg font-semibold">Chat With My Autonomous AI Agent</h3>
-
-        <p class="text-xs text-gray-500 mt-1">
-          Powered by OpenAI Agents, RAG (Pinecone), Google Calendar API, Gmail API,
-          and automated via N8N — the same architecture I build for real clients.
-        </p>
-
-        <!-- CHATBOX -->
-        <div id="chatBox"
-             class="mt-4 h-56 p-4 bg-slate-100 rounded-xl overflow-y-auto shadow-inner"></div>
-
-        <!-- EMAIL -->
-        <input id="userInputEmail"
-               placeholder="Please provide your email"
-               class="mt-3 w-full p-3 rounded-lg border text-sm" />
-
-        <!-- INPUT BAR -->
-        <div id="inputBox" class="flex gap-2 mt-3">
-          <input id="userInput"
-                 placeholder="Ask anything..."
-                 class="flex-1 p-3 rounded-lg border text-sm" />
-          <button id="sendBtn"
-                  class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
-            Send
-          </button>
+        <div class="bg-white rounded-2xl p-4 shadow">
+          <h5 class="text-sm font-semibold">Quick Contact</h5>
+          <p class="text-xs text-slate-600 mt-2">Email: <a class="text-sky-600" href="mailto:im.md.ashikur.rahman@gmail.com">im.md.ashikur.rahman@gmail.com</a></p>
+          <p class="text-xs text-slate-600">Phone: <a class="text-sky-600" href="tel:+447353215427">+44 7353 215427</a></p>
         </div>
+      </aside>
+    </main>
 
-      </div>
+    <footer class="text-center text-xs text-slate-400 mt-8">
+      © 2025 Md Ashikur Rahman • London • <a class="text-sky-600" href="https://www.linkedin.com/in/ashikurrahmanshuvo/" target="_blank">LinkedIn</a>
+    </footer>
+  </div>
 
-      <div class="bg-white rounded-xl shadow p-6">
-        <h4 class="font-semibold mb-2">Education & Certifications</h4>
-        <p class="text-xs text-slate-500">
-          BSc Computer Science • Zend Certified Engineer (PHP)
-        </p>
-      </div>
-
-    </aside>
-
-  </main>
-
-  <footer class="text-center text-xs text-gray-500 mt-10">
-    © 2025 Md Ashikur Rahman — London •
-    <a href="https://www.linkedin.com/in/ashikurrahmanshuvo/"
-       target="_blank"
-       class="text-blue-600 hover:underline">
-       LinkedIn
-    </a>
-  </footer>
-
-</div>
-
-  <script>
-// --------------------------------------------
-// 1) GENERATE SESSION ID ONCE PER PAGE LOAD
-// --------------------------------------------
+<script>
+// ---------------------------
+// Session & Chat Persistence
+// ---------------------------
 let sessionId = localStorage.getItem("ashik_session_id");
-
 if (!sessionId) {
-    sessionId = "sess_" + Math.random().toString(36).substr(2, 9) + "_" + Date.now();
-    localStorage.setItem("ashik_session_id", sessionId);
-    console.log("New session created:", sessionId);
+  sessionId = "sess_" + Math.random().toString(36).slice(2,11) + "_" + Date.now();
+  localStorage.setItem("ashik_session_id", sessionId);
+  console.log("New session:", sessionId);
 } else {
-    console.log("Existing session loaded:", sessionId);
+  console.log("Existing session:", sessionId);
 }
 
-// --------------------------------------------
-// Chat Interface Logic
-// --------------------------------------------
-$("#sendBtn").click(function() {
-    sendMessage();
-});
+// load chat history for this session (keyed by session)
+const CHAT_KEY = "ashik_chat_" + sessionId;
+let chatHistory = JSON.parse(localStorage.getItem(CHAT_KEY) || "[]");
 
-$("#userInput").on("keypress", function(e) {
-    if (e.which === 13) sendMessage();
-});
+// DOM refs
+const chatBox = document.getElementById("chatBox");
+const inputEl = document.getElementById("userInput");
+const emailEl = document.getElementById("userInputEmail");
+const sendBtn = document.getElementById("sendBtn");
 
+// Utility: format timestamp
+function nowLabel() {
+  const d = new Date();
+  return d.toLocaleString(undefined, { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short' });
+}
+
+// render chat history to DOM
+function renderHistory() {
+  chatBox.innerHTML = "";
+  chatHistory.forEach(item => {
+    if (item.role === 'user') renderUserBubble(item.text, item.ts);
+    else renderBotBubble(item.text, item.ts);
+  });
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+renderHistory();
+
+// helpers to push and persist
+function pushHistory(role, text) {
+  const entry = { role, text, ts: Date.now() };
+  chatHistory.push(entry);
+  localStorage.setItem(CHAT_KEY, JSON.stringify(chatHistory));
+  return entry;
+}
+
+// append user bubble
+function renderUserBubble(text, ts) {
+  const t = ts ? new Date(ts) : new Date();
+  const html = `
+    <div class="flex justify-end">
+      <div class="max-w-[85%] break-words bg-sky-50 text-sky-900 px-4 py-2 rounded-2xl rounded-br-md shadow-sm mt-2">
+        <div class="text-sm">${escapeHtml(text)}</div>
+        <div class="text-[11px] text-slate-400 mt-1 text-right">${new Date(t).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}</div>
+      </div>
+    </div>`;
+  chatBox.insertAdjacentHTML('beforeend', html);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// append bot bubble (html allowed because backend returns message_clean with <br/>)
+function renderBotBubble(htmlText, ts) {
+  const t = ts ? new Date(ts) : new Date();
+  const html = `
+    <div class="flex items-start gap-3 mt-3">
+      <div class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 font-semibold">AR</div>
+      <div class="max-w-[85%] break-words bg-slate-100 text-slate-800 px-4 py-2 rounded-2xl rounded-bl-md shadow-sm">
+        <div class="text-sm bot-content">${htmlText}</div>
+        <div class="text-[11px] text-slate-400 mt-2">${new Date(t).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}</div>
+      </div>
+    </div>`;
+  chatBox.insertAdjacentHTML('beforeend', html);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// escape user text to prevent accidental HTML injection
+function escapeHtml(unsafe) {
+  return unsafe
+       .replaceAll("&","&amp;")
+       .replaceAll("<","&lt;")
+       .replaceAll(">","&gt;")
+       .replaceAll('"',"&quot;")
+       .replaceAll("'", "&#039;");
+}
+
+// typing indicator
+let typingNode = null;
+function showTyping() {
+  if (typingNode) return;
+  typingNode = document.createElement("div");
+  typingNode.className = "flex items-start gap-3 mt-3";
+  typingNode.innerHTML = `
+    <div class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 font-semibold">AR</div>
+    <div class="max-w-[60%] px-4 py-2 rounded-2xl rounded-bl-md bg-slate-100 shadow-sm">
+      <div class="typing-dots inline-block">
+        <span></span><span></span><span></span>
+      </div>
+    </div>`;
+  chatBox.appendChild(typingNode);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+function hideTyping() {
+  if (!typingNode) return;
+  typingNode.remove();
+  typingNode = null;
+}
+
+// -----------------------------
+// Send message to submit.php
+// -----------------------------
+sendBtn.addEventListener('click', sendMessage);
+inputEl.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+
+let inflight = false;
 function sendMessage() {
-    let text = $("#userInput").val().trim();
+  const text = inputEl.value.trim();
+  if (!text) return;
 
-    // get email, fallback to default
-    const email = $('#userInputEmail').val().trim();
-    const email_final = email ? email : 'shuvo133@gmail.com';
+  // append user locally & persist
+  const userEntry = pushHistory('user', text);
+  renderUserBubble(text, userEntry.ts);
+  inputEl.value = '';
 
+  // ensure email fallback
+  const email = (emailEl.value || '').trim() || 'shuvo133@gmail.com';
 
-    if (!text) return;
+  // show typing
+  showTyping();
 
-    appendUser(text);
-    $("#userInput").val("");
+  // payload for n8n webhook
+  const payload = {
+    user_email: email,
+    user_question: text,
+    session_id: sessionId,
+    client_meta: { page: window.location.href, ts: new Date().toISOString() }
+  };
 
-    $.ajax({
-        url: "submit.php",
-        method: "POST",
-        contentType: "application/json",
-        data: JSON.stringify({
-            user_email: email_final,
-            user_question: text,
-            session_id: sessionId
-        }),
-        success: function(res) {
-            appendBot(res.message_clean);
-        },
-        error: function() {
-            appendBot("❌ Error contacting AI Agent.");
-        }
-    });
+  // POST (AJAX fetch)
+  inflight = true;
+  fetch('submit.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(async resp => {
+    hideTyping();
+    inflight = false;
+    // parse JSON safely
+    let data;
+    try { data = await resp.json(); } catch(e) { data = { message: resp.statusText || 'No response' }; }
+
+    // expected shapes:
+    // { message_clean: "<p>...</p>" } or { message: "..."} or { raw: ... }
+    let botHtml = '';
+    if (data.message_clean) {
+      // message_clean is already HTML-friendly (we trust server sanitized)
+      botHtml = data.message_clean;
+    } else if (data.message) {
+      botHtml = escapeHtml(String(data.message)).replaceAll('\n','<br>');
+    } else if (data.raw) {
+      botHtml = escapeHtml(JSON.stringify(data.raw, null, 2)).replaceAll('\n','<br>');
+    } else {
+      botHtml = 'No response from AI agent.';
+    }
+
+    // push to history and render
+    const botEntry = pushHistory('bot', botHtml);
+    renderBotBubble(botHtml, botEntry.ts);
+
+    // if booking object exists, show structured info (optional)
+    if (data.booking) {
+      const b = data.booking;
+      const bookingHtml = `<div class="mt-2 text-xs bg-sky-50 text-sky-700 p-2 rounded">${escapeHtml(b.summary || 'Meeting')}<br/>Start: ${escapeHtml(b.start || '-')}</div>`;
+      pushHistory('bot', bookingHtml);
+      renderBotBubble(bookingHtml, Date.now());
+    }
+
+  })
+  .catch(err => {
+    hideTyping();
+    inflight = false;
+    const errText = '❌ Error contacting AI Agent.';
+    const botEntry = pushHistory('bot', escapeHtml(errText));
+    renderBotBubble(escapeHtml(errText), botEntry.ts);
+    console.error('send error', err);
+  });
 }
 
-function appendUser(msg) {
-    $("#chatBox").append(`<div class="msg-user">${msg}</div>`);
-    scrollBottom();
-}
-
-function appendBot(msg) {
-    $("#chatBox").append(`<div class="msg-bot">${msg}</div>`);
-    scrollBottom();
-}
-
-function scrollBottom() {
-    let div = document.getElementById("chatBox");
-    div.scrollTop = div.scrollHeight;
-}
+// allow clearing history for dev (press ALT+R)
+window.addEventListener('keydown', (e) => {
+  if (e.altKey && (e.key === 'r' || e.key === 'R')) {
+    if (confirm('Clear chat history for this session?')) {
+      localStorage.removeItem(CHAT_KEY);
+      chatHistory = [];
+      renderHistory();
+    }
+  }
+});
 </script>
 
-  <script>
-    // Config
-    const DEFAULT_PDF = 'resume_md_ashikur_rahman full.pdf'; // point to uploaded PDF
-    const DEFAULT_DOC = 'resume_md_ashikur_rahman full.pdf'; // include in package
-
-    // download handlers
-    document.getElementById('downloadPdf').addEventListener('click', ()=>{
-      window.location.href = DEFAULT_PDF;
-    });
-    document.getElementById('downloadDoc').addEventListener('click', ()=>{
-      // if doc exists on server, navigate; otherwise trigger simple doc download fallback
-      window.location.href = DEFAULT_DOC;
-    });
-
-    // copy email
-    document.getElementById('copyEmail').addEventListener('click', (e)=>{
-      e.preventDefault(); navigator.clipboard.writeText('im.md.ashikur.rahman@gmail.com').then(()=>{
-        alert('Email copied to clipboard');
-      });
-    });
-
-    // project modal (simple)
-    document.querySelectorAll('.proj').forEach(p=>p.addEventListener('click', ()=>{
-      alert(p.querySelector('strong').innerText + '\n\n' + p.querySelector('.small').innerText);
-    }))
-
-/*
-    // Form: POST JSON to webhook OR fallback to mailto
-    document.getElementById('contactForm').addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      const status = document.getElementById('status');
-      status.textContent = 'Sending...';
-
-      const data = {
-        name: document.getElementById('name').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        role: document.getElementById('role').value.trim(),
-        message: document.getElementById('message').value.trim(),
-        source: 'portfolio-site'
-      };
-
-      const webhook = document.getElementById('webhook').value.trim();
-
-      try{
-        if(webhook){
-          // Send JSON POST to webhook
-          const res = await fetch(webhook, {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(data)
-          });
-          if(res.ok){ status.textContent = 'Message sent via webhook. Thank you!'; document.getElementById('contactForm').reset(); }
-          else{ status.textContent = 'Webhook returned error: ' + res.status; }
-        } else {
-          // fallback: create mailto link
-          const subject = encodeURIComponent('Portfolio enquiry from ' + data.name + (data.role? ' for ' + data.role : ''));
-          const body = encodeURIComponent(data.message + '\n\nContact: ' + data.email);
-          window.location.href = `mailto:im.md.ashikur.rahman@gmail.com?subject=${subject}&body=${body}`;
-          status.textContent = 'Opening your email client...';
-        }
-      }catch(err){
-        console.error(err); status.textContent = 'Failed to send message. Please try again or contact via email.';
-      }
-
-    });
-    */
-  </script>
 </body>
 </html>

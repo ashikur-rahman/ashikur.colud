@@ -15,15 +15,15 @@ jobs:
       - name: Copy files to remote server
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ''
-          source: "."
-          target: "${{ secrets.TARGET_DIR }}"
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USERNAME }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            port: ${{ secrets.SSH_PORT }}
+            source: "ashikur.colud/*"
+            target: "/var/www/html"
           # optional: exclude node_modules or .git etc
           # if you need exclude, change to rsync approach instead
+          
           
       - name: Run remote commands (set permissions / restart)
         uses: appleboy/ssh-action@master

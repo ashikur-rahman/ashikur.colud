@@ -1,0 +1,52 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main         # deploy when you push/merge to main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Copy files to remote server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ''
+          source: "."
+          target: "${{ secrets.TARGET_DIR }}"
+          # optional: exclude node_modules or .git etc
+          # if you need exclude, change to rsync approach instead
+          
+      - name: Run remote commands (set permissions / restart)
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # backup existing (optional)
+            TIMESTAMP=$(date +%Y%m%d%H%M%S)
+            if [ -d "${{ secrets.TARGET_DIR }}/.git" ]; then
+              # we're deploying from repo root - ensure proper ownership
+              echo "Setting ownership and permissions..."
+            fi
+
+            # ensure correct ownership - change as needed (deploy:www-data or www-data:www-data)
+            sudo chown -R ${{ secrets.SSH_USERNAME }}:www-data "${{ secrets.TARGET_DIR }}" || true
+            sudo find "${{ secrets.TARGET_DIR }}" -type d -exec chmod 775 {} \; || true
+            sudo find "${{ secrets.TARGET_DIR }}" -type f -exec chmod 664 {} \; || true
+
+            # Restart web server if needed (uncomment if you want)
+            # sudo systemctl restart apache2 || true
+            # sudo systemctl restart nginx || true
+
+            echo "Deployment complete."

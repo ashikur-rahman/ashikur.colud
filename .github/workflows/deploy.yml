@@ -19,8 +19,16 @@ jobs:
             username: ${{ secrets.SSH_USERNAME }}
             key: ${{ secrets.SSH_PRIVATE_KEY }}
             port: ${{ secrets.SSH_PORT }}
-            source: "ashikur.colud/*"
+            source: "./"
             target: "/var/www/html"
+            exclude: |
+              .git/
+              .github/
+              *.md
+              *.pdf
+              gha_deploy_key
+              gha_deploy_key.pub
+
           # optional: exclude node_modules or .git etc
           # if you need exclude, change to rsync approach instead
           

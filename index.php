@@ -77,6 +77,7 @@
               <span class="text-xs font-semibold px-3 py-1 bg-lime-50 text-lime-700 rounded-full">AWS</span>
               <span class="text-xs font-semibold px-3 py-1 bg-slate-50 text-slate-700 rounded-full">APIs (n8n)</span>
               <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">Docker</span>
+              <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">Kubernetes</span>
               <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">Machine Learning</span>
               <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">System Design</span>
               <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full">Power BI</span>

@@ -72,6 +72,9 @@
               <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">PHP (CodeIgniter)</span>
               <span class="text-xs font-semibold px-3 py-1 bg-amber-50 text-amber-700 rounded-full">Java Spring Boot</span>
               <span class="text-xs font-semibold px-3 py-1 bg-violet-50 text-violet-700 rounded-full">Python</span>
+              <span class="text-xs font-semibold px-3 py-1 bg-amber-50 text-amber-700 rounded-full">Data Structure</span>
+              <span class="text-xs font-semibold px-3 py-1 bg-violet-50 text-violet-700 rounded-full">Algorithm</span>
+
               <span class="text-xs font-semibold px-3 py-1 bg-violet-50 text-violet-700 rounded-full">PHP (Laravel)</span>
               <span class="text-xs font-semibold px-3 py-1 bg-rose-50 text-rose-700 rounded-full">MySQL</span>
               <span class="text-xs font-semibold px-3 py-1 bg-lime-50 text-lime-700 rounded-full">AWS</span>

@@ -44,7 +44,7 @@
         </div>
         <div>
           <h1 class="text-2xl font-semibold">Md Ashikur Rahman</h1>
-          <p class="text-sm text-slate-500">Software Developer · Fintech & AI Automation Specialist — London</p>
+          <p class="text-sm text-slate-500">Software Developer · Fintech & AI Automation Specialist</p>
           <p class="text-xs text-slate-400 mt-1">im.md.ashikur.rahman@gmail.com • <a class="text-sky-600" href="http://ashikur.cloud:8080">ashikur.cloud</a></p>
         </div>
       </div>

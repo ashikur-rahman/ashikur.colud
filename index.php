@@ -50,8 +50,8 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <button id="downloadPdf" class="px-4 py-2 rounded-lg bg-sky-600 text-white text-sm font-semibold shadow hover:bg-sky-700">Download CV (PDF)</button>
-        <button id="downloadDoc" class="px-4 py-2 rounded-lg bg-white border border-slate-200 text-sm font-semibold hover:bg-slate-50">Download CV (DOCX)</button>
+        <!-- <button id="downloadPdf" class="px-4 py-2 rounded-lg bg-sky-600 text-white text-sm font-semibold shadow hover:bg-sky-700">Download CV (PDF)</button>
+        <button id="downloadDoc" class="px-4 py-2 rounded-lg bg-white border border-slate-200 text-sm font-semibold hover:bg-slate-50">Download CV (DOCX)</button> -->
       </div>
     </header>
 

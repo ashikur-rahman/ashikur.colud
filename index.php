@@ -84,6 +84,8 @@
               <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">Machine Learning</span>
               <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">System Design</span>
               <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full">Power BI</span>
+               <span class="text-xs font-semibold px-3 py-1 bg-violet-50 text-violet-700 rounded-full">LangChain</span>
+
             </div>
           </div>
         </article>

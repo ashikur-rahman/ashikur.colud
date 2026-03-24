@@ -22,7 +22,7 @@ $payload = [
         "session_id"    => $session_id   // 🔥 IMPORTANT
     ]
 ];
-$N8N_WEBHOOK = "https://n8n.srv1062687.hstgr.cloud/webhook-test/ashik-ai-agent";
+$N8N_WEBHOOK = "https://n8n.srv1062687.hstgr.cloud/webhook/ashik-ai-agent";
 // $N8N_WEBHOOK = "https://n8n.srv1062687.hstgr.cloud/webhook/61842f10-db21-4447-8bee-24e8615b2449";
 //$N8N_WEBHOOK = "https://n8n.srv1062687.hstgr.cloud/webhook-test/61842f10-db21-4447-8bee-24e8615b2449";
 

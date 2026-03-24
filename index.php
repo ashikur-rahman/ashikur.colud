@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Md Ashikur Rahman — Portfolio & AI Assistant</title>
+  <title>AI Assistant</title>
   <meta name="description" content="Md Ashikur Rahman — Software Developer & Fintech Specialist. Backend, APIs, Laravel, PHP, Java, Spring Boot, AI-assisted development, cloud, e-commerce automation." />
 
   <!-- Inter font + Tailwind CDN (JIT) -->

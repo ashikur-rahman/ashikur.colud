@@ -59,9 +59,11 @@ $clean = str_replace("\\n", "\n", $clean);
 $clean = nl2br($clean);
 $clean = htmlspecialchars_decode($clean);
 
-echo json_encode([
-    "message_clean" => $clean
-]);
+// echo json_encode([
+//     "message_clean" => $clean
+// ]);
+
+echo $response;
 exit;
 ?>
 

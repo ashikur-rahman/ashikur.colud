@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Md Ashikur Rahman — Portfolio & AI Assistant</title>
+  <title>AI Assistant</title>
   <meta name="description" content="Md Ashikur Rahman — Software Developer & Fintech Specialist. Backend, APIs, Laravel, PHP, Java, Spring Boot, AI-assisted development, cloud, e-commerce automation." />
 
   <!-- Inter font + Tailwind CDN (JIT) -->
@@ -36,90 +36,9 @@
 <body class="bg-slate-50 text-slate-900">
 
   <div class="max-w-6xl mx-auto p-6">
-    <!-- Header -->
-    <header class="flex items-center justify-between gap-4">
-      <div class="flex items-center gap-4">
-        <div id="photoPlaceholder" class="w-20 h-20 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden shadow-sm">
-          <img src="photo-placeholder.jpg" alt="Md Ashikur Rahman" class="w-full h-full object-cover"/>
-        </div>
-        <div>
-          <h1 class="text-2xl font-semibold">Md Ashikur Rahman</h1>
-          <p class="text-sm text-slate-500">Software Developer · Fintech & AI Automation Specialist - London</p>
-          <p class="text-xs text-slate-400 mt-1">im.md.ashikur.rahman@gmail.com • <a class="text-sky-600" href="http://ashikur.cloud:8080">ashikur.cloud</a></p>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <!-- <button id="downloadPdf" class="px-4 py-2 rounded-lg bg-sky-600 text-white text-sm font-semibold shadow hover:bg-sky-700">Download CV (PDF)</button>
-        <button id="downloadDoc" class="px-4 py-2 rounded-lg bg-white border border-slate-200 text-sm font-semibold hover:bg-slate-50">Download CV (DOCX)</button> -->
-      </div>
-    </header>
-
+   
     <main class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- Left: Summary + Projects -->
-      <section class="lg:col-span-2 space-y-4">
-        <article class="bg-white rounded-2xl p-6 shadow">
-          <h2 class="text-lg font-semibold">Summary</h2>
-          <p class="text-sm text-slate-700 mt-3 leading-relaxed">
-            Experienced backend developer with 12+ years in banking, fintech and SaaS. I design and build scalable APIs,
-            microservices, and automation platforms — using PHP, Java Spring Boot, Python and cloud-native tools.
-            I integrate AI agents and workflow orchestration (n8n) to automate business processes and customer interactions.
-          </p>
-
-          <div class="mt-4">
-            <h3 class="text-sm font-medium text-slate-700">Core Skills</h3>
-            <div class="flex flex-wrap gap-2 mt-3">
-              <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">PHP (CodeIgniter)</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-amber-50 text-amber-700 rounded-full">Java Spring Boot</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-violet-50 text-violet-700 rounded-full">Python</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-amber-50 text-amber-700 rounded-full">Data Structure</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-violet-50 text-violet-700 rounded-full">Algorithm</span>
-
-              <span class="text-xs font-semibold px-3 py-1 bg-violet-50 text-violet-700 rounded-full">PHP (Laravel)</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-rose-50 text-rose-700 rounded-full">MySQL</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-lime-50 text-lime-700 rounded-full">AWS</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-slate-50 text-slate-700 rounded-full">APIs (n8n)</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">Docker</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">Kubernetes</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">Machine Learning</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-sky-50 text-sky-700 rounded-full">System Design</span>
-              <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full">Power BI</span>
-               <span class="text-xs font-semibold px-3 py-1 bg-violet-50 text-violet-700 rounded-full">LangChain</span>
-
-            </div>
-          </div>
-        </article>
-
-        <article class="bg-white rounded-2xl p-6 shadow">
-          <h3 class="text-lg font-semibold">Selected Projects</h3>
-          <div class="mt-4 grid sm:grid-cols-2 gap-4">
-            <div class="p-4 border rounded-lg bg-slate-50">
-              <strong class="block">Agrani RMS</strong>
-              <p class="text-xs text-slate-600 mt-2">Enterprise remittance engine — Java, microservices, analytics.</p>
-            </div>
-            <div class="p-4 border rounded-lg bg-slate-50">
-              <strong class="block">Postgraduate-Funding.com</strong>
-              <p class="text-xs text-slate-600 mt-2">Custom CMS & payments for UK students — PHP, CI, payments.</p>
-            </div>
-            <div class="p-4 border rounded-lg bg-slate-50">
-              <strong class="block">i-probono.com</strong>
-              <p class="text-xs text-slate-600 mt-2">Bespoke PHP CMS connecting NGOs with legal volunteers.</p>
-            </div>
-            <div class="p-4 border rounded-lg bg-slate-50">
-              <strong class="block">AI Agent & RAG Integration</strong>
-              <p class="text-xs text-slate-600 mt-2">RAG knowledge + OpenAI + n8n orchestration for booking & automation.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="bg-white rounded-2xl p-6 shadow">
-          <h3 class="text-lg font-semibold">Why hire me?</h3>
-          <p class="text-sm text-slate-700 mt-3">
-            I combine deep backend/fintech experience with practical automation using AI agents and workflow orchestration.
-            I deliver secure, scalable solutions and can integrate conversational assistants into your product or operations.
-          </p>
-        </article>
-      </section>
+    
 
       <!-- Right: AI Assistant Card -->
       <aside class="space-y-4">
@@ -141,10 +60,19 @@
 
           
           <!-- controls -->
+
+          <div class="mt-2 flex gap-2 flex-wrap">
+            <button onclick="quickMsg('What will I learn?')" class="px-3 py-1 bg-slate-100 rounded">📘 What will I learn?</button>
+            <button onclick="quickMsg('How can I earn?')" class="px-3 py-1 bg-slate-100 rounded">💰 How can I earn?</button>
+            <button onclick="quickMsg('Is this beginner friendly?')" class="px-3 py-1 bg-slate-100 rounded">🧠 Beginner?</button>
+            <button onclick="quickMsg('Book a call')" class="px-3 py-1 bg-sky-100 rounded">📅 Book Call</button>
+          </div> 
           <div class="mt-3 flex gap-2 items-center">
             <input id="userInput" placeholder="Type your question..." class="flex-1 p-2 rounded-lg border border-slate-200 text-sm" />
             <button id="sendBtn" class="px-4 py-2 rounded-lg bg-sky-600 text-white font-semibold hover:bg-sky-700">Send</button>
           </div>
+
+       
           <!-- email input -->
           <input id="userInputEmail" type="email" placeholder="Please provide your email (optional)" class="mt-3 p-2 rounded-md border border-slate-200 text-sm" />
 
@@ -155,11 +83,7 @@
           </div>
         </div>
 
-        <div class="bg-white rounded-2xl p-4 shadow">
-          <h5 class="text-sm font-semibold">Quick Contact</h5>
-          <p class="text-xs text-slate-600 mt-2">Email: <a class="text-sky-600" href="mailto:im.md.ashikur.rahman@gmail.com">im.md.ashikur.rahman@gmail.com</a></p>
-          <p class="text-xs text-slate-600">Phone: <a class="text-sky-600" href="tel:+447353215427">+44 7353 215427</a></p>
-        </div>
+      
       </aside>
     </main>
 
@@ -190,6 +114,11 @@ const chatBox = document.getElementById("chatBox");
 const inputEl = document.getElementById("userInput");
 const emailEl = document.getElementById("userInputEmail");
 const sendBtn = document.getElementById("sendBtn");
+
+function quickMsg(text){
+  inputEl.value = text;
+  sendMessage();
+}
 
 // Utility: format timestamp
 function nowLabel() {

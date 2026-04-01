@@ -1,0 +1,106 @@
+{
+  "name": "RAG System Workflow (Fixed)",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            { "name": "query" },
+            { "name": "session_id" }
+          ]
+        }
+      },
+      "id": "trigger",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [-400, 200]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "question",
+              "value": "={{ $json.query }}"
+            }
+          ]
+        }
+      },
+      "id": "set",
+      "name": "Set Question",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [-200, 200]
+    },
+    {
+      "parameters": {},
+      "id": "embed",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [-200, 400],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "memoryKey": "vector_store_key"
+      },
+      "id": "vector",
+      "name": "Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1,
+      "position": [0, 400]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Answer ONLY using the knowledge base.\n\nQuestion:\n{{$json.question}}\n\nIf not found, say: I don’t have that information in the training materials."
+      },
+      "id": "agent",
+      "name": "RAG AI",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [200, 200]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4.1-mini"
+      },
+      "id": "chat",
+      "name": "OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [200, 400],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE",
+          "name": "OpenAI"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [[{ "node": "Set Question" }]]
+    },
+    "Set Question": {
+      "main": [[{ "node": "RAG AI" }]]
+    },
+    "Embeddings": {
+      "ai_embedding": [[{ "node": "Vector Store" }]]
+    },
+    "Vector Store": {
+      "ai_tool": [[{ "node": "RAG AI" }]]
+    },
+    "OpenAI": {
+      "ai_languageModel": [[{ "node": "RAG AI" }]]
+    }
+  }
+}

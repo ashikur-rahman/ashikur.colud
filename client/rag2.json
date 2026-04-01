@@ -1,0 +1,173 @@
+{
+  "name": "Ashik AI Sales Funnel (Fixed)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ashik-ai-agent",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-1000, 0]
+    },
+
+    {
+      "parameters": {
+        "functionCode": "const text = ($json.body.body.user_question || '').toLowerCase();\n\nlet intent = 'low';\nlet score = 0;\n\nif (text.includes('price') || text.includes('cost') || text.includes('earn')) {\n  intent = 'medium'; score += 2;\n}\n\nif (text.includes('join') || text.includes('start') || text.includes('book') || text.includes('call')) {\n  intent = 'high'; score += 5;\n}\n\nreturn [{\n  ...$json,\n  intent,\n  score\n}];"
+      },
+      "id": "intent",
+      "name": "Intent Detection",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [-800, 0]
+    },
+
+    {
+      "parameters": {
+        "model": "gpt-4.1-mini"
+      },
+      "id": "openai",
+      "name": "OpenAI Chat",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [-600, 200],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE",
+          "name": "OpenAI"
+        }
+      }
+    },
+
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "You are a high-converting AI sales assistant.\n\nUser: {{$json.body.body.user_question}}\nIntent: {{$json.intent}}\n\nIf HIGH → push booking\nIf MEDIUM → explain value + CTA\nIf LOW → educate + curiosity\n\nAlways end with a clear CTA.\nKeep short, human, persuasive."
+      },
+      "id": "ai",
+      "name": "AI Sales Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [-600, 0]
+    },
+
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "message_clean",
+              "value": "={{ $json.output }}"
+            }
+          ]
+        }
+      },
+      "id": "setResponse",
+      "name": "Format Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [-200, 0]
+    },
+
+    {
+      "parameters": {},
+      "id": "respond",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": "YOUR_SHEET_ID",
+        "sheetName": "Sheet1",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "User Email": "={{ $json.body.body.user_email }}",
+            "User Query": "={{ $json.body.body.user_question }}",
+            "Intent": "={{ $json.intent }}",
+            "Timestamp": "={{ $now }}"
+          }
+        }
+      },
+      "id": "sheets",
+      "name": "Save Lead",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [-200, 200],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE",
+          "name": "Google Sheets"
+        }
+      }
+    },
+
+    {
+      "parameters": {
+        "text": "🔥 New Lead\nEmail: {{$json.body.body.user_email}}\nIntent: {{$json.intent}}\nMessage: {{$json.body.body.user_question}}"
+      },
+      "id": "slack",
+      "name": "Slack Alert",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2,
+      "position": [0, 200],
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "REPLACE",
+          "name": "Slack"
+        }
+      }
+    }
+  ],
+
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          { "node": "Intent Detection", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+
+    "Intent Detection": {
+      "main": [
+        [
+          { "node": "AI Sales Agent", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+
+    "AI Sales Agent": {
+      "main": [
+        [
+          { "node": "Format Response", "type": "main", "index": 0 },
+          { "node": "Save Lead", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+
+    "Format Response": {
+      "main": [
+        [
+          { "node": "Respond", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+
+    "Save Lead": {
+      "main": [
+        [
+          { "node": "Slack Alert", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "name": "Ashik AI Sales Funnel (RAG Fixed)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ashik-ai-agent",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-600, 200]
+    },
+    {
+      "parameters": {
+        "functionCode": "const text = $json?.body?.body?.user_question || $json?.body?.user_question || $json?.user_question || \"\";\nreturn [{ ...$json, user_question: text }];"
+      },
+      "id": "normalize",
+      "name": "Normalize Input",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [-400, 200]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4.1-mini"
+      },
+      "id": "openai",
+      "name": "OpenAI Chat",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [-200, 400],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "You are a professional AI assistant for a training business.\n\nUser Question:\n{{$json.user_question}}\n\nRULE:\nIf the question is about training, course, learning, pricing, results or process → MUST use RAG tool first.\n\nAnswer clearly and naturally.\nKeep it short.\n\nIf user shows interest → guide toward booking a call."
+      },
+      "id": "agent",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [-200, 200]
+    },
+    {
+      "parameters": {
+        "description": "Use this tool to answer all training/business related questions from documents.",
+        "workflowId": "fZLwbzlJP3fMqqvE",
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "query": "={{ $json.user_question }}",
+            "session_id": "={{ $json.body?.body?.session_id || 'default' }}"
+          }
+        }
+      },
+      "id": "ragtool",
+      "name": "RAG Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [0, 400]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "message_clean",
+              "value": "={{ $json.output }}"
+            }
+          ]
+        }
+      },
+      "id": "format",
+      "name": "Format Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [200, 200]
+    },
+    {
+      "parameters": {},
+      "id": "respond",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [400, 200]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Normalize Input", "type": "main" }]]
+    },
+    "Normalize Input": {
+      "main": [[{ "node": "AI Agent", "type": "main" }]]
+    },
+    "OpenAI Chat": {
+      "ai_languageModel": [[{ "node": "AI Agent" }]]
+    },
+    "RAG Tool": {
+      "ai_tool": [[{ "node": "AI Agent" }]]
+    },
+    "AI Agent": {
+      "main": [[{ "node": "Format Response" }]]
+    },
+    "Format Response": {
+      "main": [[{ "node": "Respond" }]]
+    }
+  }
+}

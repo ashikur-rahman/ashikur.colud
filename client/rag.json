@@ -1,0 +1,165 @@
+{
+  "name": "Ashik AI Sales Funnel (Optimized)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ashik-ai-agent",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-800, 0]
+    },
+
+    {
+      "parameters": {
+        "functionCode": "const text = $json.body.user_question.toLowerCase();\n\nlet intent = 'low';\nlet score = 0;\n\nif (text.includes('price') || text.includes('cost') || text.includes('earn')) {\n  intent = 'medium'; score += 2;\n}\n\nif (text.includes('join') || text.includes('start') || text.includes('book') || text.includes('call')) {\n  intent = 'high'; score += 5;\n}\n\nreturn [{\n  ...$json,\n  intent,\n  score\n}];"
+      },
+      "id": "intent",
+      "name": "Intent Detection",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [-600, 0]
+    },
+
+    {
+      "parameters": {
+        "model": "gpt-4.1-mini"
+      },
+      "id": "openai",
+      "name": "OpenAI Chat",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [-400, 200]
+    },
+
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "You are a high-converting AI sales assistant.\n\nUser: {{$json.body.user_question}}\nIntent: {{$json.intent}}\n\nIf HIGH → push booking\nIf MEDIUM → explain value + CTA\nIf LOW → educate + curiosity\n\nAlways end with CTA.\nKeep short, persuasive, human."
+      },
+      "id": "ai",
+      "name": "AI Sales Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [-200, 0]
+    },
+
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.intent}}",
+              "operation": "equal",
+              "value2": "high"
+            }
+          ]
+        }
+      },
+      "id": "ifHigh",
+      "name": "IF High Intent",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+
+    {
+      "parameters": {
+        "calendar": "your_calendar_email",
+        "operation": "getAll"
+      },
+      "id": "calendar",
+      "name": "Get Available Slots",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [200, -100]
+    },
+
+    {
+      "parameters": {
+        "calendar": "your_calendar_email",
+        "operation": "create",
+        "start": "={{$now}}",
+        "end": "={{$now.plus({minutes:15})}}"
+      },
+      "id": "book",
+      "name": "Book Meeting",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [400, -100]
+    },
+
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "YOUR_SHEET_ID",
+        "range": "Sheet1!A:D",
+        "options": {},
+        "valueInputMode": "RAW"
+      },
+      "id": "sheets",
+      "name": "Save Lead",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [200, 100]
+    },
+
+    {
+      "parameters": {
+        "text": "🔥 HOT LEAD\nEmail: {{$json.body.user_email}}\nIntent: {{$json.intent}}\nMessage: {{$json.body.user_question}}"
+      },
+      "id": "slack",
+      "name": "Slack Alert",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2,
+      "position": [400, 100]
+    },
+
+    {
+      "parameters": {
+        {
+          "message_clean": "={{ $json.output || $json.text || 'Sorry, I could not process your request.' }}"
+        }
+      },
+      "id": "respond",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [600, 0]
+    }
+  ],
+
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Intent Detection", "type": "main", "index": 0 }]]
+    },
+    "Intent Detection": {
+      "main": [[{ "node": "AI Sales Agent", "type": "main", "index": 0 }]]
+    },
+    "AI Sales Agent": {
+      "main": [[{ "node": "IF High Intent", "type": "main", "index": 0 }]]
+    },
+    "IF High Intent": {
+      "main": [
+        [{ "node": "Get Available Slots", "type": "main", "index": 0 }],
+        [{ "node": "Save Lead", "type": "main", "index": 0 }]
+      ]
+    },
+    "Get Available Slots": {
+      "main": [[{ "node": "Book Meeting", "type": "main", "index": 0 }]]
+    },
+    "Book Meeting": {
+      "main": [[{ "node": "Slack Alert", "type": "main", "index": 0 }]]
+    },
+    "Save Lead": {
+      "main": [[{ "node": "Slack Alert", "type": "main", "index": 0 }]]
+    },
+    "Slack Alert": {
+      "main": [[{ "node": "Respond", "type": "main", "index": 0 }]]
+    }
+  }
+}

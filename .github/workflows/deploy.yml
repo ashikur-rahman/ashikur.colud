@@ -34,7 +34,7 @@ jobs:
       port: ${{ secrets.SSH_PORT }}
       key: ${{ secrets.SSH_PRIVATE_KEY }}
       script: |
-        sudo rm -rf /var/www/html/*
+        rm -rf /var/www/html/*
 
   # ✅ Upload fresh build
   - name: Copy dist to server

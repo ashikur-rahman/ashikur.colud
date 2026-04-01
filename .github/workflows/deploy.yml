@@ -12,27 +12,37 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Copy files to remote server
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+         node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+        
+      - name: Clean target directory
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo rm -rf /var/www/html/*
+            
+      - name: Copy dist to server
         uses: appleboy/scp-action@master
         with:
-            host: ${{ secrets.SSH_HOST }}
-            username: ${{ secrets.SSH_USERNAME }}
-            key: ${{ secrets.SSH_PRIVATE_KEY }}
-            port: ${{ secrets.SSH_PORT }}
-            source: "./"
-            target: "/var/www/html"
-            exclude: |
-              .git/
-              .github/
-              *.md
-              *.pdf
-              gha_deploy_key
-              gha_deploy_key.pub
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "dist/*"
+          target: "/var/www/html"
 
-          # optional: exclude node_modules or .git etc
-          # if you need exclude, change to rsync approach instead
-          
-          
       - name: Run remote commands (set permissions / restart)
         uses: appleboy/ssh-action@master
         with:

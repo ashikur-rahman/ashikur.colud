@@ -60,7 +60,7 @@ const ContactSection = () => {
                 <a href="https://www.linkedin.com/in/ashikurrahmanshuvo/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors">
                   <Linkedin size={16} />
                 </a>
-                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors">
+                <a href="https://github.com/ashikur-rahman" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors">
                   <Github size={16} />
                 </a>
                 <a href="https://www.upwork.com/freelancers/~0110cec7419da70f09" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors">

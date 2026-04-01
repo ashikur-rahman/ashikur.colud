@@ -64,7 +64,6 @@ $clean = htmlspecialchars_decode($clean);
 // ]);
 
 echo $response;
-
 exit;
 ?>
 

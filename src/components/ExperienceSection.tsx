@@ -56,6 +56,19 @@ const experiences = [
       "Established Git-based CI/CD pipelines across distributed Scrum teams.",
     ],
   },
+  {
+    icon: Briefcase,
+    title: "Software Developer",
+    company: "SAASCO Communications Ltd",
+    location: "Dhaka, Bangladesh",
+    period: "Jan 2012 — Aug 2012",
+    points: [
+      "Designed and developed Attendance, Payroll, and HR management modules as part of an ERP system for garments industries using CodeIgniter.",
+      "Built web APIs for biometric attendance devices using PHP, integrating with the SAASCO Time Attendance System.",
+      "Developed a popular Payroll management system linked with bio-metric devices, sold to numerous garments industries and schools in Bangladesh.",
+      "Worked with MySQL, REST APIs, jQuery, Bootstrap, and AJAX for modular full-stack development.",
+    ],
+  },
 ];
 
 const ExperienceSection = () => {

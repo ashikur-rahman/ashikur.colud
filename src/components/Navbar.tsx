@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
+  { label: "Workflows", href: "#workflows" },
   { label: "Projects", href: "#projects" },
+  { label: "ATS Score", href: "#ats-score" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -48,12 +51,15 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="hidden md:inline-flex px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
-        >
-          Hire Me
-        </a>
+        <div className="hidden md:flex items-center gap-3">
+          <ThemeSwitcher />
+          <a
+            href="#contact"
+            className="px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
+          >
+            Hire Me
+          </a>
+        </div>
 
         {/* Mobile toggle */}
         <button

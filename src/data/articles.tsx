@@ -1,0 +1,133 @@
+export interface Article {
+  title: string;
+  excerpt: string;
+  tags: string[];
+  date: string;
+  url: string;
+  coverGradient: string;
+  icon: string;
+  category: "development" | "seo" | "marketing" | "general";
+}
+
+export const articles: Article[] = [
+  {
+    title: "Laravel Migration Made Simple: Step-by-Step Guide for Beginners & Intermediate Developers",
+    excerpt: "If you're learning Laravel, migrations are one of the MOST IMPORTANT things to master. Think of migrations as version control for your database — instead of manually creating tables in phpMyAdmin, you define everything in code.",
+    tags: ["Laravel", "PHP", "Database", "Backend"],
+    date: "2025",
+    url: "https://www.linkedin.com/pulse/laravel-migration-made-simple-step-by-step-guide-beginners-rahman-xomxe",
+    coverGradient: "from-orange-500/20 to-red-500/20",
+    icon: "🚀",
+    category: "development",
+  },
+  {
+    title: "Laravel Folder Structure & How Routing Actually Works (Made Simple)",
+    excerpt: "When beginners open a fresh Laravel project, the first reaction is usually: 'Why are there so many folders?' But Laravel's folder structure is beautifully organized — and once you understand it, everything becomes predictable and powerful.",
+    tags: ["Laravel", "PHP", "Architecture", "Routing"],
+    date: "2025",
+    url: "https://www.linkedin.com/pulse/laravel-folder-structure-how-routing-actually-works-made-rahman-leaee",
+    coverGradient: "from-blue-500/20 to-purple-500/20",
+    icon: "📁",
+    category: "development",
+  },
+  {
+    title: "Getting Started with Web Development: A Beginner's Guide",
+    excerpt: "In today's digital age, having a presence on the web is essential. Web development involves two key components: Frontend Development (HTML, CSS, JavaScript) and Backend Development (databases, server-side scripts).",
+    tags: ["Web Development", "HTML", "CSS", "JavaScript"],
+    date: "2024",
+    url: "https://www.linkedin.com/pulse/getting-started-web-development-beginners-guide-ashikur-rahman-g1ivc",
+    coverGradient: "from-emerald-500/20 to-teal-500/20",
+    icon: "🌐",
+    category: "development",
+  },
+  {
+    title: "JavaScript Guideline: ফুলস্ট্যাক জাভাস্ক্রিপ্ট ডেভেলপার গাইড লাইন",
+    excerpt: "A comprehensive guideline for aspiring full-stack JavaScript developers, covering the complete roadmap from fundamentals to advanced concepts in both Bengali and English.",
+    tags: ["JavaScript", "Full Stack", "Guide", "Bengali"],
+    date: "2024",
+    url: "https://www.linkedin.com/pulse/javascript-guideline-%E0%A6%AB%E0%A6%B2%E0%A6%B8%E0%A6%9F%E0%A6%AF%E0%A6%95-%E0%A6%9C%E0%A6%AD%E0%A6%B8%E0%A6%95%E0%A6%B0%E0%A6%AA%E0%A6%9F-%E0%A6%A1%E0%A6%AD%E0%A6%B2%E0%A6%AA%E0%A6%B0-%E0%A6%97%E0%A6%87%E0%A6%A1-%E0%A6%B2%E0%A6%87%E0%A6%A8-ashikur-rahman",
+    coverGradient: "from-yellow-500/20 to-amber-500/20",
+    icon: "📘",
+    category: "development",
+  },
+  {
+    title: "Mastering JavaScript: A Comprehensive Guide for Beginners",
+    excerpt: "A deep dive into JavaScript fundamentals and advanced concepts, designed to help beginners build a strong foundation in the most popular programming language for web development.",
+    tags: ["JavaScript", "Programming", "Beginner", "Guide"],
+    date: "2024",
+    url: "https://www.linkedin.com/pulse/mastering-javascript-comprehensive-guide-beginners-askur-rahman",
+    coverGradient: "from-yellow-400/20 to-orange-500/20",
+    icon: "⚡",
+    category: "development",
+  },
+  {
+    title: "Exploring Backend Web Design",
+    excerpt: "An exploration of backend web development concepts, server-side technologies, and how they work together to power modern web applications behind the scenes.",
+    tags: ["Backend", "Web Design", "Server-Side", "Architecture"],
+    date: "2024",
+    url: "https://www.linkedin.com/pulse/exploring-backend-web-design-askur-rahman-ds8ac",
+    coverGradient: "from-indigo-500/20 to-violet-500/20",
+    icon: "🖥️",
+    category: "development",
+  },
+  {
+    title: "Why Make an Ecommerce Website Responsive?",
+    excerpt: "Understanding the critical importance of responsive design for ecommerce websites — how it impacts user experience, conversion rates, and search engine rankings in today's mobile-first world.",
+    tags: ["E-commerce", "Responsive Design", "UX", "Mobile"],
+    date: "2024",
+    url: "https://www.linkedin.com/pulse/why-make-ecommerce-website-responsive-md-ashikur-rahman-fjlzc",
+    coverGradient: "from-pink-500/20 to-rose-500/20",
+    icon: "🛒",
+    category: "development",
+  },
+  {
+    title: "Boost Your Web Site Speed with WP Rocket",
+    excerpt: "A practical guide on optimizing WordPress website performance using WP Rocket — covering caching strategies, file optimization, and techniques to dramatically improve page load times.",
+    tags: ["WordPress", "Performance", "WP Rocket", "Optimization"],
+    date: "2024",
+    url: "https://www.linkedin.com/pulse/boost-your-web-site-speed-wp-rocket-md-ashikur-rahman-b8tpc",
+    coverGradient: "from-red-500/20 to-orange-500/20",
+    icon: "🚀",
+    category: "development",
+  },
+  {
+    title: "Link Building Fundamentals",
+    excerpt: "Understanding the core principles of link building for SEO — strategies, best practices, and techniques to build high-quality backlinks that improve search engine rankings.",
+    tags: ["SEO", "Link Building", "Digital Marketing"],
+    date: "2023",
+    url: "https://www.linkedin.com/pulse/link-building-fundamentals-md-ashikur-rahman",
+    coverGradient: "from-cyan-500/20 to-blue-500/20",
+    icon: "🔗",
+    category: "seo",
+  },
+  {
+    title: "What Is Search Engine Marketing?",
+    excerpt: "A comprehensive overview of Search Engine Marketing (SEM), how it differs from SEO, and practical strategies for running effective paid search campaigns to drive targeted traffic.",
+    tags: ["SEM", "Digital Marketing", "PPC", "Google Ads"],
+    date: "2023",
+    url: "https://www.linkedin.com/pulse/what-search-engine-marketing-dx-ashikur-rahman-ashik-slrme",
+    coverGradient: "from-green-500/20 to-emerald-500/20",
+    icon: "🔍",
+    category: "marketing",
+  },
+  {
+    title: "What Is Video Marketing?",
+    excerpt: "Exploring the power of video marketing and video SEO — how to create, optimize, and distribute video content that engages audiences and ranks well in search engines.",
+    tags: ["Video Marketing", "SEO", "Content Strategy", "YouTube"],
+    date: "2023",
+    url: "https://www.linkedin.com/pulse/what-video-marketing-dx-ashikur-rahman-ashik-1urpc",
+    coverGradient: "from-purple-500/20 to-pink-500/20",
+    icon: "🎬",
+    category: "marketing",
+  },
+  {
+    title: "How to Book Promotion?",
+    excerpt: "Strategies and techniques for effective book promotion — from digital marketing approaches to building an author platform and reaching your target audience.",
+    tags: ["Book Promotion", "Marketing", "Digital Strategy"],
+    date: "2023",
+    url: "https://www.linkedin.com/pulse/how-book-promotion-dx-ashikur-rahman-ashik-ihm8c",
+    coverGradient: "from-amber-500/20 to-yellow-500/20",
+    icon: "📚",
+    category: "marketing",
+  },
+];

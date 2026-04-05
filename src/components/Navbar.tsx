@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const navLinks = [
@@ -9,6 +10,7 @@ const navLinks = [
   { label: "Skills", href: "#skills" },
   { label: "Workflows", href: "#workflows" },
   { label: "Projects", href: "#projects" },
+  { label: "Blog", href: "/blog" },
   { label: "ATS Score", href: "#ats-score" },
   { label: "Contact", href: "#contact" },
 ];
@@ -41,12 +43,21 @@ const Navbar = () => {
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                {link.label}
-              </a>
+              {link.href.startsWith("/") ? (
+                <Link
+                  to={link.href}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  href={link.href}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -80,13 +91,23 @@ const Navbar = () => {
           <ul className="flex flex-col p-6 gap-4">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {link.label}
-                </a>
+                {link.href.startsWith("/") ? (
+                  <Link
+                    to={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                )}
               </li>
             ))}
             <a

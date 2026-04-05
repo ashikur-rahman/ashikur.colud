@@ -5,7 +5,7 @@ import profilePhoto from "@/assets/profile-photo.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background */}
       <div className="absolute inset-0">
         <img src={heroBg} alt="" className="w-full h-full object-cover opacity-40" width={1920} height={1080} />
@@ -80,7 +80,7 @@ const HeroSection = () => {
           <a href="https://www.linkedin.com/in/ashikurrahmanshuvo/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors">
             <Linkedin size={14} /> LinkedIn
           </a>
-          <a href="https://github.com/ashikur-rahman" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors">
             <Github size={14} /> GitHub
           </a>
         </motion.div>

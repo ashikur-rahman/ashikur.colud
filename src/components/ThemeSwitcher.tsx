@@ -11,6 +11,7 @@ type Theme = {
 
 const themes: Theme[] = [
   { id: "default", label: "Professional", icon: "🔵", description: "Clean blue on dark navy" },
+  { id: "light", label: "Light", icon: "☀️", description: "Clean light background" },
   { id: "emerald", label: "Emerald", icon: "🟢", description: "Green tones, nature feel" },
   { id: "amber", label: "Amber Gold", icon: "🟡", description: "Warm gold accents" },
   { id: "rose", label: "Rose", icon: "🔴", description: "Soft rose & pink tones" },

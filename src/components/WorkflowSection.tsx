@@ -3,8 +3,10 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   Monitor, GitBranch, Github, Server, Globe, CheckCircle,
   ArrowRight, Bot, Database, Brain, Search, MessageSquare,
-  FileText, Cpu, Zap, Shield, RefreshCw
+  FileText, Cpu, Zap, Shield, RefreshCw, ZoomIn, X
 } from "lucide-react";
+import ragWorkflow1 from "@/assets/rag-workflow-1.png";
+import ragWorkflow2 from "@/assets/rag-workflow-2.png";
 
 /* ─── CI/CD Pipeline Steps ─── */
 const cicdSteps = [
@@ -360,12 +362,99 @@ const WorkflowSection = () => {
             ) : (
               <motion.div key="rag" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                 <FlowDiagram steps={ragSteps} />
+                {/* RAG Architecture Screenshots */}
+                <RagArchitectureGallery />
               </motion.div>
             )}
           </AnimatePresence>
         </motion.div>
       </div>
     </section>
+  );
+};
+
+/* ─── RAG Architecture Gallery ─── */
+const RagArchitectureGallery = () => {
+  const [lightbox, setLightbox] = useState<string | null>(null);
+
+  const images = [
+    {
+      src: ragWorkflow1,
+      title: "RAG Document Pipeline",
+      desc: "Documents from Google Drive are extracted, chunked via Recursive Text Splitter, embedded with OpenAI, and stored in a Vector Store for semantic retrieval.",
+    },
+    {
+      src: ragWorkflow2,
+      title: "AI Agent Orchestration",
+      desc: "Webhook receives queries → AI Agent uses OpenAI Chat Model with Simple Memory, RAG retrieval, Google Calendar, Gmail, Telegram & Slack integrations.",
+    },
+  ];
+
+  return (
+    <>
+      <div className="mt-8 space-y-4">
+        <div className="flex items-center gap-2">
+          <FileText size={16} className="text-primary" />
+          <h4 className="text-sm font-semibold text-foreground">n8n Workflow Architecture</h4>
+          <span className="text-[10px] text-muted-foreground ml-1">(click to enlarge)</span>
+        </div>
+        <div className="grid md:grid-cols-2 gap-4">
+          {images.map((img, i) => (
+            <motion.button
+              key={i}
+              onClick={() => setLightbox(img.src)}
+              whileHover={{ scale: 1.02 }}
+              className="group relative glass rounded-xl overflow-hidden border border-border hover:border-primary/40 transition-all text-left"
+            >
+              <div className="relative overflow-hidden">
+                <img
+                  src={img.src}
+                  alt={img.title}
+                  className="w-full h-48 object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
+                <div className="absolute top-3 right-3 p-1.5 rounded-lg bg-card/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ZoomIn size={14} className="text-primary" />
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-sm font-semibold text-foreground">{img.title}</p>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{img.desc}</p>
+              </div>
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 backdrop-blur-md p-4"
+            onClick={() => setLightbox(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              className="relative max-w-5xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setLightbox(null)}
+                className="absolute -top-3 -right-3 z-10 p-2 rounded-full bg-card border border-border hover:border-primary/40 transition-colors"
+              >
+                <X size={16} className="text-foreground" />
+              </button>
+              <img src={lightbox} alt="Workflow architecture" className="w-full rounded-xl border border-border shadow-2xl" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

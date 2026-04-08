@@ -28,9 +28,6 @@ const Index = () => (
   </div>
 );
 
-<script src="https://app.velocityos.app/chatbot/widget.js"
-  data-key="vos_cb_tpDpz...[regenerate to see full key]"
-  data-position="bottom-right"
-  data-theme="light"></script>
+
 
 export default Index;

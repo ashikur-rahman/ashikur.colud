@@ -1,0 +1,121 @@
+
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enterprise Operations Center V3</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#040912;color:#e9f3ff;font-family:Inter,Segoe UI,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:#09111d;border-bottom:1px solid #1b2b42}
+h1{margin:0;font-size:24px}.sub{font-size:13px;color:#8fa9c7}
+.grid{display:grid;grid-template-columns:290px 1fr 360px;gap:16px;padding:16px}
+.panel{background:#0b1524;border:1px solid #1d3048;border-radius:14px;padding:14px}
+.metric{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{background:#111f33;padding:10px;border-radius:10px}
+.val{font-size:24px;color:#57f2a9;font-weight:700}
+svg{width:100%;height:720px;background:radial-gradient(circle at center,#10233d,#050b14);border-radius:14px}
+.node{fill:#132640;stroke:#47b5ff;stroke-width:2}.txt{fill:#fff;font-size:12px;text-anchor:middle}
+.edge{stroke:#2d6ca5;stroke-width:2.2;fill:none;opacity:.45}
+.log{height:250px;background:#050d18;border-radius:8px;padding:10px;font-family:Consolas;overflow:auto}
+button{background:#1492ff;color:#fff;border:0;padding:12px 18px;border-radius:8px;cursor:pointer}
+.pipe{display:flex;flex-wrap:wrap;gap:6px}.step{flex:1;min-width:70px;background:#122640;padding:8px;border-radius:8px;text-align:center;transition:.3s}.on{background:#148d61}
+.badge{display:inline-block;padding:3px 8px;border-radius:20px;background:#143352;color:#7ed6ff;font-size:12px;margin:2px}
+</style></head><body>
+<header><div><h1>Enterprise Financial Integration Operations Center</h1><div class="sub">Portfolio Demonstration • High-level architecture only • No confidential workflows or production data</div></div><button id="run">▶ Launch Simulation</button></header>
+<div class="grid">
+<div class="panel">
+<h3>Operational Health</h3>
+<div class="metric">
+<div class="card"><div>TPS</div><div class="val" id="tps">0</div></div>
+<div class="card"><div>Processed</div><div class="val" id="proc">0</div></div>
+<div class="card"><div>Partners</div><div class="val">18</div></div>
+<div class="card"><div>Validation</div><div class="val">99.97%</div></div>
+</div>
+<h3>Capabilities</h3>
+<span class="badge">REST APIs</span><span class="badge">Spring Boot</span><span class="badge">MySQL</span><span class="badge">Docker</span><span class="badge">CI/CD</span><span class="badge">Analytics</span><span class="badge">24×7 Jobs</span>
+<h3>Deployment</h3>
+<div class="pipe">
+<div class="step" id="g">Git</div><div class="step" id="b">Build</div><div class="step" id="t">Tests</div><div class="step" id="d">Docker</div><div class="step" id="v">Internal VPS</div><div class="step" id="p">Prod</div>
+</div>
+</div>
+<div class="panel">
+<svg viewBox="0 0 1200 720">
+<defs><circle id="pkt" r="5" fill="#57f2a9"/></defs>
+<path id="m1" class="edge" d="M80 120 L240 120 L240 240"/>
+<path id="m2" class="edge" d="M240 240 L420 240"/>
+<path id="m3" class="edge" d="M420 240 L610 240"/>
+<path id="m4" class="edge" d="M610 240 L830 120"/>
+<path id="m5" class="edge" d="M610 240 L830 260"/>
+<path id="m6" class="edge" d="M610 240 L830 400"/>
+<path id="m7" class="edge" d="M610 240 L830 560"/>
+<path id="err" class="edge" d="M420 240 L420 420 L610 420"/>
+<rect class="node" x="20" y="80" width="100" height="80" rx="12"/><text class="txt" x="70" y="126">🌍 Partners</text>
+<rect class="node" x="180" y="80" width="120" height="80" rx="12"/><text class="txt" x="240" y="126">API Gateway</text>
+<rect class="node" x="180" y="200" width="120" height="80" rx="12"/><text class="txt" x="240" y="246">Validation</text>
+<rect class="node" x="360" y="200" width="120" height="80" rx="12"/><text class="txt" x="420" y="246">Processing</text>
+<rect class="node" x="550" y="200" width="120" height="80" rx="12"/><text class="txt" x="610" y="246">Smart Router</text>
+<rect class="node" x="550" y="380" width="150" height="80" rx="12"/><text class="txt" x="625" y="426">Exception Queue</text>
+<rect class="node" x="780" y="80" width="180" height="80" rx="12"/><text class="txt" x="870" y="126">CBS</text>
+<rect class="node" x="780" y="220" width="180" height="80" rx="12"/><text class="txt" x="870" y="266">BEFTN</text>
+<rect class="node" x="780" y="360" width="180" height="80" rx="12"/><text class="txt" x="870" y="406">NPSB</text>
+<rect class="node" x="780" y="520" width="220" height="80" rx="12"/><text class="txt" x="890" y="566">Executive Analytics</text>
+<use href="#pkt" id="p1"/><use href="#pkt" id="p2"/><use href="#pkt" id="p3"/>
+</svg>
+</div>
+<div class="panel">
+<h3>Engineering Event Stream</h3><div id="log" class="log"></div>
+<h3>Leadership</h3>
+<ul>
+<li>Led a team of three engineers.</li>
+<li>Designed secure integration workflows.</li>
+<li>Git-based collaboration and code reviews.</li>
+<li>Dockerized deployments to internal VPS.</li>
+<li>Automated builds, tests and releases.</li>
+<li>Executive dashboards & regulatory reporting.</li>
+</ul>
+</div></div>
+<script>
+const ids=['g','b','t','d','v','p'];
+const paths=['m1','m2','m3','m4','m5','m6','m7'];
+const pkts=[p1,p2,p3];
+const log=document.getElementById('log');
+function move(el,pathId,delay){
+ const path=document.getElementById(pathId),L=path.getTotalLength();
+ setTimeout(()=>{
+ let s;
+ function a(ts){
+  if(!s)s=ts;
+  let k=Math.min((ts-s)/700,1);
+  let pt=path.getPointAtLength(L*k);
+  el.setAttribute('x',pt.x);el.setAttribute('y',pt.y);
+  if(k<1)requestAnimationFrame(a);
+ }
+ requestAnimationFrame(a);
+ },delay);
+}
+run.onclick=()=>{
+ log.innerHTML='';
+ ids.forEach(x=>document.getElementById(x).classList.remove('on'));
+ let proc=0,tps=1100,stage=0;
+ const msgs=['Partner connected','Payload received','Validation complete','Routing to CBS','Settlement to BEFTN','NPSB distribution','Analytics refreshed'];
+ const c=setInterval(()=>{
+   proc+=Math.floor(Math.random()*350+120);
+   tps+=Math.floor(Math.random()*40-15);
+   document.getElementById('proc').textContent=proc.toLocaleString();
+   document.getElementById('tps').textContent=tps;
+ },300);
+ ids.forEach((id,i)=>setTimeout(()=>document.getElementById(id).classList.add('on'),i*700));
+ paths.forEach((p,i)=>{
+   move(pkts[i%3],p,i*450);
+   setTimeout(()=>{
+     log.innerHTML+=`<div>[${new Date().toLocaleTimeString()}] ${msgs[i]}</div>`;
+     log.scrollTop=log.scrollHeight;
+     if(i===paths.length-1){
+       clearInterval(c);
+       log.innerHTML+="<br><span style='color:#57f2a9'>✔ Platform healthy • All downstream services operational.</span>";
+     }
+   },i*450+700);
+ });
+ // occasional exception packet
+ move(pkts[2],'err',1400);
+};
+</script>
+</body></html>

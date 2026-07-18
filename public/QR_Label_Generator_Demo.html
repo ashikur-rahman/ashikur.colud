@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QR Generator Demo</title>
+<style>
+body{font-family:Segoe UI;background:#0b1320;color:#fff;margin:0;padding:20px}
+.panel{max-width:900px;margin:auto;background:#13213a;padding:20px;border-radius:12px}
+select,button{padding:10px;margin:8px;font-size:15px}
+#codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:20px}
+.card{background:#1b2d4a;border-radius:10px;padding:12px;text-align:center}
+.qr{
+width:120px;height:120px;margin:auto;
+background:
+linear-gradient(90deg,#000 10px,transparent 10px) 0 0/20px 20px,
+linear-gradient(#000 10px,transparent 10px) 0 0/20px 20px,
+#fff;
+border:8px solid #fff;
+box-shadow:0 0 8px rgba(0,0,0,.4)
+}
+small{color:#a9c5e5}
+</style>
+</head>
+<body>
+<div class="panel">
+<h2>🏷️ Sample QR Label Generator (Presentation Demo)</h2>
+<p>Select a category and generate example QR labels for presentation purposes.</p>
+
+<select id="category">
+<option value="COF">☕ Coffee & Tea</option>
+<option value="DAI">🥛 Dairy</option>
+<option value="DRK">🥤 Drinks</option>
+<option value="EQP">🍴 Equipment</option>
+<option value="CLN">🧽 Cleaning</option>
+<option value="BAK">🥐 Bakery</option>
+</select>
+
+<select id="qty">
+<option>5</option>
+<option>10</option>
+<option>20</option>
+</select>
+
+<button onclick="generate()">Generate Sample QR Labels</button>
+
+<div id="codes"></div>
+</div>
+
+<script>
+function generate(){
+ const prefix=document.getElementById("category").value;
+ const qty=parseInt(document.getElementById("qty").value);
+ const c=document.getElementById("codes");
+ c.innerHTML="";
+ for(let i=1;i<=qty;i++){
+   let id=prefix+"-2026-"+String(i).padStart(6,"0");
+   c.innerHTML+=`
+   <div class="card">
+      <div class="qr"></div>
+      <h4>${id}</h4>
+      <small>Status: Ready for Printing</small><br>
+      <small>Warehouse Zone: A${(i%4)+1}</small>
+   </div>`;
+ }
+}
+generate();
+</script>
+</body>
+</html>

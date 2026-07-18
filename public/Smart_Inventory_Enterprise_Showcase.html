@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Inventory Intelligence - Enterprise Showcase</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#081019;color:#eef;font-family:Segoe UI,Arial}
+header{padding:18px 24px;background:linear-gradient(90deg,#12233d,#214d78)}
+.layout{display:grid;grid-template-columns:320px 1fr 340px;gap:14px;padding:14px}
+.card{background:#111c2d;border:1px solid #2d4f71;border-radius:14px;padding:14px}
+button{padding:12px 18px;border:0;border-radius:8px;background:#1698ff;color:#fff;cursor:pointer}
+
+.button{padding:12px 18px;border:0;border-radius:8px;background:#1698ff;color:#fff;cursor:pointer}
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.k{background:#18304d;padding:10px;border-radius:8px}.v{font-size:24px;color:#62f7b2}
+.feature{display:flex;justify-content:space-between;background:#162945;padding:8px;border-radius:8px;margin:6px 0}
+.dot{width:12px;height:12px;border-radius:50%}.g{background:#2ecc71}.y{background:#f1c40f}.r{background:#e74c3c}
+#scene{position:relative;height:760px;background:linear-gradient(#11243d,#0b1725);border-radius:12px;overflow:hidden}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:40px 40px}
+.zone{position:absolute;border:2px solid #4e79a7;border-radius:10px;padding:8px}
+.zone h4{margin:0 0 6px}
+.shelf{display:flex;flex-wrap:wrap;gap:4px}
+.box{width:28px;height:28px;border-radius:4px;border:2px solid #805c2a;position:relative}
+.box:after{content:"QR";font-size:7px;background:#fff;color:#000;position:absolute;right:1px;top:1px}
+.green{background:#59d676}.yellow{background:#ffd54f}.red{background:#ff6d6d}
+#truck,#fork,#worker{position:absolute;font-size:38px;transition:all 2s}
+#truck{left:-80px;top:30px}#fork{left:40px;bottom:20px}#worker{left:500px;bottom:30px}
+.toast{position:absolute;right:20px;top:1px;background:#173255;border-left:5px solid #2ecc71;padding:10px;border-radius:8px;display:none;min-width:260px; z-index: 9;}
+.phone{background:#222;border:4px solid #555;border-radius:18px;padding:10px}
+.timeline{height:220px;overflow:auto;background:#08111d;padding:8px;border-radius:8px;font-family:Consolas}
+</style>
+</head>
+<body>
+<header><h2>🏭 Smart Inventory Intelligence Platform</h2> 
+
+  <button onclick="demo()">▶ Executive Presentation</button>
+
+ </header>
+<div class="layout">
+<div class="card">
+<h3>Executive Dashboard</h3>
+ 
+<div class="kpi">
+<div class="k">Products<div class="v">524</div></div>
+<div class="k">Healthy<div class="v">421</div></div>
+<div class="k">Low<div class="v" id="low">18</div></div>
+<div class="k">Critical<div class="v" id="crit">3</div></div>
+
+</div>
+ <br><a class="button"  style="float: left;" href="QR_Label_Generator_Demo.html">▶ QR Generator </a> 
+  <br> <br>
+<h3>Platform Features</h3>
+<div class="feature">QR Tracking<div class="dot g"></div></div>
+<div class="feature">Warehouse Digital Twin<div class="dot g"></div></div>
+<div class="feature">Live Inventory<div class="dot g"></div></div>
+<div class="feature">Forecasting<div class="dot y"></div></div>
+<div class="feature">Notifications<div class="dot g"></div></div>
+<div class="feature">AI Reorder<div class="dot r"></div></div>
+<br><button onclick="demo()">▶ Executive Presentation</button>
+
+
+</div>
+
+<div class="card">
+<div id="scene">
+<div class="grid"></div>
+<div id="toast" class="toast"></div>
+<div id="truck">🚚</div>
+<div id="fork">🚜</div>
+<div id="worker">👷</div>
+
+<div class="zone" style="left:20px;top:80px;width:180px;height:120px"><h4>Receiving Dock</h4></div>
+<div class="zone" style="left:230px;top:40px;width:260px;height:260px"><h4>☕ Coffee</h4><div class="shelf" id="coffee"></div></div>
+<div class="zone" style="left:520px;top:40px;width:260px;height:260px"><h4>🥛 Dairy</h4><div class="shelf" id="dairy"></div></div>
+<div class="zone" style="left:230px;top:340px;width:260px;height:260px"><h4>🥤 Drinks</h4><div class="shelf" id="drinks"></div></div>
+<div class="zone" style="left:520px;top:340px;width:260px;height:260px"><h4>🍴 Equipment</h4><div class="shelf" id="equip"></div></div>
+</div>
+</div>
+
+<div class="card">
+<h3>📱 Scanner</h3>
+<div class="phone">
+<b>Coffee Beans</b><hr>
+QR: COF-2026-001245<br>
+Batch: B7782<br>
+Remaining: <span id="remain">5</span><br>
+Status: <span id="status">READY</span>
+</div>
+<h3>🔔 Manager Notifications</h3>
+<div class="timeline" id="log"></div>
+</div>
+</div>
+<script>
+function fill(id,g,y,r){
+ let el=document.getElementById(id);
+ for(let i=0;i<g;i++)el.innerHTML+='<div class="box green"></div>';
+ for(let i=0;i<y;i++)el.innerHTML+='<div class="box yellow"></div>';
+ for(let i=0;i<r;i++)el.innerHTML+='<div class="box red"></div>';
+}
+fill("coffee",8,3,0);fill("dairy",10,1,0);fill("drinks",6,2,1);fill("equip",2,2,1);
+
+const events=[
+["🚚 Supplier delivery received.","Delivery Received"],
+["🏷️ QR labels generated automatically.","QR Labels"],
+["🚜 Forklift transported pallets.","Warehouse Updated"],
+["👷 Worker scanned Coffee QR.","QR Scanned"],
+["📉 Coffee stock reduced to 4 boxes.","Low Stock"],
+["🔔 Manager notified automatically.","Manager Alert"],
+["🛒 Purchase Order PO-2026-0142 created.","Purchase Order"],
+["📈 AI predicts stock-out in 18 hours.","AI Forecast"]
+];
+function toast(msg){
+ let t=document.getElementById("toast");
+ t.innerHTML="<b>"+msg+"</b>";
+ t.style.display="block";
+ setTimeout(()=>t.style.display="none",30000);
+}
+function demo(){
+ truck.style.left="40px";
+ setTimeout(()=>fork.style.left="260px",2200);
+ setTimeout(()=>worker.style.left="650px",4300);
+ events.forEach((e,i)=>{
+   setTimeout(()=>{
+     toast(e[1]);
+     log.innerHTML+="✔ "+e[0]+"<br>";
+     log.scrollTop=log.scrollHeight;
+     if(i===4){remain.textContent="4";status.textContent="LOW STOCK";low.textContent="19";crit.textContent="4";}
+     if(i===7){status.textContent="PURCHASE INITIATED";}
+   },i*1500+800);
+ });
+}
+</script>
+</body>
+</html>
